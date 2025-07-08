@@ -1,0 +1,152 @@
+{
+    "ojs":{
+        "MT.WOOJIN_CHEMI": {
+            "text": "MT. WOOJIN CHEMI",
+            "image": "https://static.vesselfinder.net/ship-photo/9272814-441921000-6ca3aa8ed25311278686113cd6f139c6/1?v1",
+            "desc":{
+                "imo" : "9272814",
+                "built": "2003",
+                "grt": "5,347",
+                "flag": "MARSHALL",
+                "type": "OIL/CHEM"
+            }   
+        },
+        "MT.BEGONIA": {
+            "text": "MT. BEGONIA",
+            "image": "https://static.vesselfinder.net/ship-photo/9330381-440109000-216b15b76838380f37d837a8090e30b1/1?v1",
+            "desc":{
+                "imo" : "9330381",
+                "built": "2005",
+                "grt": "8,259",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }
+        },
+        "MT.WOOJIN_KELLY": {
+            "text": "MT. WOOJIN KELLY",
+            "image": "https://static.vesselfinder.net/ship-photo/9330408-441210000-9accd0d8e2da5b9e388587b7d38986bb/1?v1",
+            "desc":{
+                "imo" : "9330408",
+                "built": "2006",
+                "grt": "8,254",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
+        },
+        "MT.WOOJIN_ELVIS": {
+            "text": "MT. WOOJIN ELVIS",
+            "image": "./src/ELVIS.png",
+            "desc":{
+                "imo" : "9442665",
+                "built": "2009",
+                "grt": "7,217",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
+        },
+        "MT.SALVIA": {
+            "text": "MT. SALVIA",
+            "image": "https://static.vesselfinder.net/ship-photo/9409508-440420000-af37acdaea4d3e87b05a404260cef033/1?v1",
+            "desc":{
+                "imo" : "9409508",
+                "built": "2009",
+                "grt": "7,215",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
+        },
+        "MT.WOOJIN_PIONEER": {
+            "text": "MT. WOOJIN PIONEER",
+            "image": "https://static.vesselfinder.net/ship-photo/9287027-441346000-e799c104cd92112ce47dac41f9d28d8e/1?v1",
+            "desc":{
+                "imo" : "9287027",
+                "built": "2003",
+                "grt": "2,712",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
+        },
+        "MT.CHEMICAL_MARKETER": {
+            "text": "MT. CHEMICAL MARKETER",
+            "image": "https://static.vesselfinder.net/ship-photo/9304291-249814000-bb1b4d7ba421cc915e978feabd6dcbe0/1?v1",
+            "desc":{
+                "imo" : "9304291",
+                "built": "2004",
+                "grt": "8,261",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
+        },
+        "MT.WOOJIN_FRANK": {
+            "text": "MT. WOOJIN FRANK",
+            "image": "https://static.vesselfinder.net/ship-photo/9317262-441927000-774e17abd52c00b6ea3bdf959f56bc8b/1?v1",
+            "desc":{
+                "imo" : "9317262",
+                "built": "2005",
+                "grt": "7,143",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
+        },
+        "MT.CLAYTON": {
+            "text": "MV. CLAYTON",
+            "image": "https://static.vesselfinder.net/images/cool-ship2@2.png",
+            "desc":{
+                "imo" : "1019979",
+                "built": "2025",
+                "grt": "7,800",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
+        }
+    },
+    "gfsm":{
+        "MT.DS_PANTHER": {
+            "text": "MT. DS PANTHER",
+            "image": "https://static.vesselfinder.net/ship-photo/9361471-565591000-3d9c48cd0757a1c59c1ff5611dfc4c9d/1?v1",
+            "desc":{
+                "imo" : "9361471",
+                "built": "2008",
+                "grt": "8,581",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }
+        },
+        "MT.SKY_BLUE": {
+            "text": "MT. SKY BLUE",
+            "image": "https://static.vesselfinder.net/ship-photo/9272814-441921000-6ca3aa8ed25311278686113cd6f139c6/1?v1",
+            "desc":{
+                "imo" : "9512109",
+                "built": "2009",
+                "grt": "8,686",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
+        }
+        
+    },
+    "ktm":{
+        "MT.BEGONIA": {
+            "text": "MT.BEGONIA",
+            "image": "https://static.vesselfinder.net/ship-photo/9330381-440109000-216b15b76838380f37d837a8090e30b1/1?v1",
+            "desc":{
+                "imo" : "9330381",
+                "built": "2005",
+                "grt": "8,259",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }
+        },
+        "MT.WOOJIN_CHEMI": {
+            "text": "MT.WOOJIN CHEMI",
+            "image": "https://static.vesselfinder.net/ship-photo/9272814-441921000-6ca3aa8ed25311278686113cd6f139c6/1?v1",
+            "desc":{
+                "imo" : "9272814",
+                "built": "2003",
+                "grt": "5,347",
+                "flag": "MARSHALL ISLANDS",
+                "type": "OIL/CHEM"
+            }   
+        }
+    }
+}

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True North Maritime Corp.</title>
+    <meta name="description" content="True North Maritime Corporation - Leading maritime services provider in Manila, Philippines. Specializing in vessel management, ship operations, and comprehensive maritime solutions. Contact President Danilo I. Acenas for professional maritime consulting and fleet management services.">
+    
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Font loading with display=swap for better performance -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" />
+    
+    <!-- Critical resources -->
+    <link rel="shortcut icon" href="./src/logo.png" type="image/png">
+    <link rel="stylesheet" href="./src/style.css">
+    
+    <!-- Preload critical images -->
+    <link rel="preload" href="./src/logo.png" as="image" type="image/png">
+    <link rel="preload" href="./src/hero.png" as="image" type="image/png">
+</head>
+<body>
+    <div id="loading-overlay">Loading...</div>
+    <nav>
+        <div class="left">
+           <img src="./src/logo.png" alt="logo" width="50" height="50" loading="eager">
+        </div>
+        <div class="right">
+            <button id="nav-message-us">
+                Contact Us
+            </button>
+        </div>
+    </nav>
+    <div class="hero">
+        <div class="logo-text">
+            TRUE NORTH<span>Maritime Corporation</span>
+        </div> 
+        <div id="hero-text">
+        </div>
+        <button id="message-us">Contact Us</button>
+        <img src="./src/hero.png" alt="vessel" width="500" height="400" loading="eager">
+    </div>
+    <div class="tagline">
+        <div>
+            <span class="material-symbols-outlined">
+                anchor
+            </span>
+            <span id="tagline-1"></span>
+        </div>
+        <div>
+            <span class="material-symbols-outlined">
+                directions_boat
+            </span>
+            <span id="tagline-2"></span>
+        </div>
+        <div>
+            <span class="material-symbols-outlined">
+                explore
+            </span>
+            <span id="tagline-3"></span>
+        </div>
+    </div>
+    <div class="company_profile">
+        <span class="over">
+            <span id="years-operating"></span>
+            Years of Excellence
+        </span>
+        <span id="text"></span>
+    </div>
+    <div id="hm1" class="horizontal-marque">
+        <div class="marquee"></div>    
+    </div>
+    <div id="vm">
+        <div id="vision">
+            <span class="material-symbols-outlined">
+                    visibility
+            </span>
+            VISION
+            <span id="vision_c"></span>
+        </div>
+        <div id="mission">
+            <span class="material-symbols-outlined">
+                    strategy
+            </span>
+            MISSION
+            <span id="mission_c"></span>
+        </div>
+    </div>
+    <div class="footer">
+        <span style="
+            font-size: x-large;  
+            padding: 0 1.2em 0.5em;  
+        "><b>TRUE NORTH Maritime Corporation</b></span>
+        <span><b>President:</b> Danilo I. Acenas</span>
+        <span><b>Address:</b> <a href="https://www.google.com/maps/dir/?api=1&destination=True+North+Maritime+Corporation%2C+Suite+1001+%26+1003A%2C+Ermita+Center+Building%2C+1350+Roxas+Boulevard%2C+Ermita%2C+Manila%2C+1000%2C+Metro+Manila" target="_blank" rel="noopener">10F Suite 1001 & 1003A, Ermita Center Building, 1350 Roxas Boulevard, Ermita, Manila, 1000, Metro Manila</a></span>
+        <span><b>Tel.:</b> (632) 8567-5427 | (632) 8526-7535 | (632) 88526-7502</span>
+        <span><b>E-Mail:</b> <a href="mailto:truenorthmaritimecorp@gmail.com">truenorthmaritimecorp@gmail.com</a> | <a href="mailto:truenorthmaritimecorp@yahoo.com">truenorthmaritimecorp@yahoo.com</a></span>
+        <hr style="
+            width: calc(100vw - 4em);
+            border-color: #0792fd7d;;
+            margin: 2em;
+        ">
+        <div id="credits">
+            <span style="
+                    text-align: center;
+                    padding: 0;
+            ">Images from vesselfinder.com | marinevesseltraffic.com</span>
+            <a href="https://github.com/justinecabel" target="_blank" rel="noopener">
+                <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="github-logo" loading="lazy">
+            </a>
+        </div>
+    </div>
+    
+    <!-- Deferred script loading for better performance -->
+    <script src="./src/script.js" defer></script>
+    <script defer>
+        // Years calculation moved to avoid blocking
+        const foundedYear = 1997;
+        const currentYear = new Date().getFullYear();
+        const years = currentYear - foundedYear;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set years immediately
+            const yearsSpan = document.getElementById('years-operating');
+            if (yearsSpan) yearsSpan.textContent = years;
+            
+            // Optimized vessel marquee loading
+            fetch('./json/vessel.json')
+                .then(res => res.json())
+                .then(data => {
+                    const vessels = Object.entries(data).flatMap(([principal, vesselsObj]) =>
+                        Object.values(vesselsObj).map(vessel => ({
+                            ...vessel,
+                            principal
+                        }))
+                    );
+                    
+                    const marquee = document.querySelector('#hm1 .marquee');
+                    if (!marquee || vessels.length === 0) return;
+
+                    // Use fragment for better performance
+                    const fragment = document.createDocumentFragment();
+                    vessels.forEach(vessel => {
+                        const item = document.createElement('div');
+                        item.className = 'item';
+                        item.innerHTML = `
+                            <img src="${vessel.image}" alt="${vessel.text}" width="200" height="150" loading="lazy">
+                            <span class="vessel-details hidden">IMO: ${vessel.desc.imo}<br>GRT: ${vessel.desc.grt}<br>Type: ${vessel.desc.type}<br>Flag: ${vessel.desc.flag}<br>Built: ${vessel.desc.built}</span>
+                            <span class="name">${vessel.text}</span>
+                        `;
+                        fragment.appendChild(item);
+                    });
+                    marquee.appendChild(fragment);
+
+                    let marqueeState = {
+                        pos: 0,
+                        direction: 1,
+                        speed: 2,
+                        running: false,
+                        maxOffset: 0,
+                        resumeTimeout: null,
+                        animationId: null
+                    };
+
+                    function setupMarquee() {
+                        const container = marquee.parentElement;
+                        const containerWidth = container.offsetWidth;
+                        const marqueeWidth = marquee.scrollWidth;
+                        marqueeState.maxOffset = Math.max(0, marqueeWidth - containerWidth);
+                        marqueeState.pos = 0;
+                        marqueeState.direction = 1;
+                        marquee.style.transform = `translateX(0)`;
+                    }
+
+                    // Use passive event listeners for better performance
+                    marquee.addEventListener('mouseenter', () => marqueeState.speed = 0.25, { passive: true });
+                    marquee.addEventListener('mouseleave', () => marqueeState.speed = 2, { passive: true });
+
+                    function animateMarquee() {
+                        if (marqueeState.running && marqueeState.maxOffset > 0) {
+                            marqueeState.pos += marqueeState.speed * marqueeState.direction;
+                            if (marqueeState.pos > marqueeState.maxOffset) {
+                                marqueeState.pos = marqueeState.maxOffset;
+                                marqueeState.direction = -1;
+                            }
+                            if (marqueeState.pos < 0) {
+                                marqueeState.pos = 0;
+                                marqueeState.direction = 1;
+                            }
+                            marquee.style.transform = `translateX(${-marqueeState.pos}px)`;
+                            marqueeState.animationId = requestAnimationFrame(animateMarquee);
+                        } else {
+                            // Stop animation when not running
+                            if (marqueeState.animationId) {
+                                cancelAnimationFrame(marqueeState.animationId);
+                                marqueeState.animationId = null;
+                            }
+                        }
+                    }
+
+                    setupMarquee();
+
+                    // Intersection Observer for performance
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                if (marqueeState.resumeTimeout) clearTimeout(marqueeState.resumeTimeout);
+                                marqueeState.resumeTimeout = setTimeout(() => {
+                                    marqueeState.running = true;
+                                    if (!marqueeState.animationId) {
+                                        animateMarquee(); // Start animation only when needed
+                                    }
+                                }, 100);
+                            } else {
+                                marqueeState.running = false;
+                                if (marqueeState.resumeTimeout) clearTimeout(marqueeState.resumeTimeout);
+                            }
+                        });
+                    }, { threshold: 0.1 });
+
+                    observer.observe(document.querySelector('#hm1'));
+                    
+                    // Cleanup function for better memory management
+                    window.addEventListener('beforeunload', () => {
+                        observer.disconnect();
+                        if (marqueeState.animationId) {
+                            cancelAnimationFrame(marqueeState.animationId);
+                        }
+                        if (marqueeState.resumeTimeout) {
+                            clearTimeout(marqueeState.resumeTimeout);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error loading vessels:', error));
+
+            // Single optimized fetch for TNMC data
+            fetch('./json/tnmc.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Batch DOM updates for better performance
+                    const updates = [
+                        ['hero-text', data['hero-text'], 'textContent'],
+                        ['tagline-1', data['tagline-1'], 'textContent'],
+                        ['tagline-2', data['tagline-2'], 'textContent'],
+                        ['tagline-3', data['tagline-3'], 'textContent'],
+                        ['.company_profile #text', data['company_profile'], 'innerHTML'],
+                        ['vision_c', data['vision'], 'innerHTML'],
+                        ['mission_c', data['mission'], 'innerHTML']
+                    ];
+
+                    updates.forEach(([selector, content, method]) => {
+                        const element = selector.startsWith('.') ? 
+                            document.querySelector(selector) : 
+                            document.getElementById(selector);
+                        if (element && content) {
+                            element[method] = content;
+                        }
+                    });
+                })
+                .catch(error => console.error('Error loading TNMC data:', error));
+
+            // Contact button functionality
+            document.querySelectorAll('#nav-message-us, #message-us').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
+                }, { passive: false });
+            });
+        });
+
+        // Optimized loading overlay
+        window.addEventListener('load', function() {
+            const overlay = document.getElementById('loading-overlay');
+            overlay.style.opacity = '0';
+            overlay.style.transition = 'opacity 0.3s';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                document.body.classList.add('loaded');
+            }, 300);
+        }, { once: true });
+    </script>
+</body>
+</html>
