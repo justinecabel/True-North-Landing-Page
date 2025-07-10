@@ -93,7 +93,7 @@
             font-size: x-large;  
             padding: 0 1.2em 0.5em;  
         "><b>TRUE NORTH Maritime Corporation</b></span>
-        <span><b>President:</b> Danilo I. Acenas</span>
+        <span><b>President:</b> Capt. Danilo I. Acenas</span>
         <span><b>Address:</b> <a href="https://www.google.com/maps/dir/?api=1&destination=True+North+Maritime+Corporation%2C+Suite+1001+%26+1003A%2C+Ermita+Center+Building%2C+1350+Roxas+Boulevard%2C+Ermita%2C+Manila%2C+1000%2C+Metro+Manila" target="_blank" rel="noopener">10F Suite 1001 & 1003A, Ermita Center Building, 1350 Roxas Boulevard, Ermita, Manila, 1000, Metro Manila</a></span>
         <span><b>Tel.:</b> (632) 8567-5427 | (632) 8526-7535 | (632) 88526-7502</span>
         <span><b>E-Mail:</b> <a href="mailto:truenorthmaritimecorp@gmail.com">truenorthmaritimecorp@gmail.com</a> | <a href="mailto:truenorthmaritimecorp@yahoo.com">truenorthmaritimecorp@yahoo.com</a></span>
@@ -265,8 +265,18 @@
             document.querySelectorAll('#nav-message-us, #message-us').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
-                }, { passive: false });
+                    
+                    // Check if the device is likely mobile (e.g., screen width less than 768px)
+                    const isMobile = window.innerWidth < 768;
+
+                    if (isMobile) {
+                        // On mobile, use instant scroll for maximum compatibility
+                        document.querySelector('.footer').scrollIntoView();
+                    } else {
+                        // On desktop, use smooth scroll for a better experience
+                        document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
             });
         });
 
