@@ -18,7 +18,7 @@ body {
 .logo-text {
     font-family: 'Logo-font';
     font-style: italic;
-    font-size: max(9vw, 47px);
+    font-size: max(9vw, 100px);
     color: #0592fd;
     text-align: start;
     display: flex;
@@ -78,16 +78,18 @@ nav button:active, #message-us:active {
 }
 
 .hero{
-    height: 100vh;
+    min-height: 100vh; /* Use min-height instead of fixed height */
+    height: auto;      /* Allow it to grow beyond 100vh */
     box-sizing: border-box;
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center; /* Better vertical centering of content */
     flex-direction: column;
     margin: 0 10vw;
     gap: 2em;
     position: relative;
-    padding-top: 8em;
+    padding-top: 5em; /* Adjusted padding */
+    padding-bottom: 5em;
 }
 
 .hero img {
@@ -133,7 +135,8 @@ body.loaded .hero img {
 
 .footer{
     color: white;
-    padding: 2em 0;
+    padding-top: 3em;
+    padding-bottom: 2em;
     position: relative;
     bottom: 0;
     width: 100%;
@@ -326,6 +329,13 @@ ul{
     align-items: center;
     min-height: 69vh;
     gap: 2em;
+    min-height: 40vh; /* Minimum height of 40% of the viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4em 2em; /* Add vertical and horizontal padding */
+    position: relative; /* Ensure it respects document flow */
 }
 
 .company_profile .over {

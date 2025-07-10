@@ -266,14 +266,15 @@
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
                     
-                    // Check if the device is likely mobile (e.g., screen width less than 768px)
-                    const isMobile = window.innerWidth < 768;
+                    // Detect if the device is mobile using the User-Agent string
+                    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                    const isMobileByAgent = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
 
-                    if (isMobile) {
-                        // On mobile, use instant scroll for maximum compatibility
+                    if (isMobileByAgent) {
+                        // On mobile devices (detected by User-Agent), use instant scroll
                         document.querySelector('.footer').scrollIntoView();
                     } else {
-                        // On desktop, use smooth scroll for a better experience
+                        // On desktop devices, use smooth scroll
                         document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
                     }
                 });
