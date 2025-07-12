@@ -150,7 +150,7 @@ body.loaded .hero img {
 
 #credits {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0 2em;
     width: calc(100vw - 4em);
     align-items: center;
@@ -313,8 +313,8 @@ ul{
 
 
 .company_profile #text {
-    color: #ffffff;
-    padding: 0 15vw;
+    color: #c0c0c0;
+    padding: 0 10vw;
     line-height: 1.3em;
     font-size: 1.2em;
 }
@@ -339,8 +339,9 @@ ul{
 }
 
 .company_profile .over {
-    font-size: 4em;
+    font-size: 3em;
     padding: 0 17vw;
+    font-weight: bold;
 }
 
 .footer a{
