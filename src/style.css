@@ -18,7 +18,7 @@ body {
 .logo-text {
     font-family: 'Logo-font';
     font-style: italic;
-    font-size: max(9vw, 100px);
+    font-size: max(9vw, 80px);
     color: #0592fd;
     text-align: start;
     display: flex;
