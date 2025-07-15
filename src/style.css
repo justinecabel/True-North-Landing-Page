@@ -140,7 +140,7 @@ body.loaded .hero > img {
     position: relative;
     bottom: 0;
     width: 100%;
-    /* margin-top: 2em; */
+    margin-top: 2em;
     background-color: #161616;
     display: flex;
     flex-direction: column;
@@ -321,7 +321,7 @@ ul{
 
 .company_profile {
     text-align: center;
-    /* margin: 2em 0 0; */
+    margin: 2em 0 2em;
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -410,25 +410,26 @@ ul{
 }
 
 ._list{
-    /* background: #182334; */
+    /* background: #fefefe; */
     display: flex;
-    min-height: 35vh;
+    min-height: 56vh;
     justify-content: center;
-    margin: 2em;
-    border-top: solid #1a5387;
-    border-bottom: solid #1a5387;
+    margin: 2em 0;
+    /* border-top: solid #1a5387; */
+    /* border-bottom: solid #1a5387; */
     flex-direction: column;
     gap: 3em;
     align-items: center;
-    padding: 2em 0;
+    padding: 2em;
 }
 
 ._list img{height: 6em;cursor: pointer;}
-._list img:hover{height: 6.1em}
+._list img:hover{transform: scale(1.1);}
 
 ._list .title{
     font-size: 1.75em;
-    color: #ffffff;
+    color: #c0c0c0;
+    font-weight: bold;
 }
 ._list div{
     display: flex;
