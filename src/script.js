@@ -1,19 +1,3 @@
-
-// Check production mode and redirect if in dev
-fetch('./json/prod.json')
-    .then(response => response.json())
-    .then(data => {
-        if (data.mode === 'dev') {
-            window.location.href = './pages/underconstruction.html';
-        }
-    })
-    .catch(error => {
-        console.error('Error checking production mode:', error);
-        // If there's an error loading the JSON, you might want to redirect to construction page as a fallback
-        // window.location.href = './pages/underconstruction.html';
-    });
-
-
 window.addEventListener('DOMContentLoaded', function() {
     const taglines = document.querySelectorAll('.tagline > div');
     let current = 0;

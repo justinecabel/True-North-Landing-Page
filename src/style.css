@@ -92,7 +92,7 @@ nav button:active, #message-us:active {
     padding-bottom: 5em;
 }
 
-.hero img {
+.hero > img{
     position: absolute;
     right: -17vw;
     top: 1vw;
@@ -105,7 +105,7 @@ nav button:active, #message-us:active {
     pointer-events: none;
     opacity: 0;
     transform: translate(0, -40px) scale(0.95);
-    transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1) 0.7s, transform 0.7s cubic-bezier(0.4,0,0.2,1) 0.7s;
+    transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1) 0.5s, transform 0.5s cubic-bezier(0.4,0,0.2,1) 0.5s;
 }
 
 #hero-text {
@@ -128,7 +128,7 @@ body.loaded .hero button {
     transform: translateY(0);
 }
 
-body.loaded .hero img {
+body.loaded .hero > img {
     opacity: 1;
     transform: translate(-40px, 40px) scale(1);
 }
@@ -235,7 +235,7 @@ ul{
 
 
 @media (max-width: 600px) {
-    .hero img{
+    .hero > img{
     top: 35vw;
     right: -3vw;
     }
@@ -321,7 +321,7 @@ ul{
 
 .company_profile {
     text-align: center;
-    margin: 2em 0;
+    /* margin: 2em 0 0; */
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -334,7 +334,7 @@ ul{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4em 2em; /* Add vertical and horizontal padding */
+    padding: 2em 2em 0; /* Add vertical and horizontal padding */
     position: relative; /* Ensure it respects document flow */
 }
 
@@ -358,7 +358,7 @@ ul{
     color:white;
 }
 
-#vm{display: flex;flex-direction: row;padding: 5em 2em;flex-wrap: wrap;font-weight: bold;justify-content: center;gap: 2em;min-height: 50vh;align-content: center;} 
+#vm{display: flex;flex-direction: row;padding: 2em 2em 0;flex-wrap: wrap;font-weight: bold;justify-content: center;gap: 2em;min-height: 29vh;align-content: center;} 
 
 #vm #vision, #vm #mission{color: white;background-color: rgb(23 35 52);padding: 2em;border-radius: 1em;width: 20em;min-height: 7em;display: flex;align-items: flex-start;text-align: left;flex-direction: column;gap: 1em;font-weight: lighter;font-size: 1.25em;}
 
@@ -409,3 +409,30 @@ ul{
     backface-visibility: hidden;
 }
 
+._list{
+    /* background: #182334; */
+    display: flex;
+    min-height: 35vh;
+    justify-content: center;
+    margin: 2em;
+    border-top: solid #1a5387;
+    border-bottom: solid #1a5387;
+    flex-direction: column;
+    gap: 3em;
+    align-items: center;
+    padding: 2em 0;
+}
+
+._list img{height: 6em;cursor: pointer;}
+._list img:hover{height: 6.1em}
+
+._list .title{
+    font-size: 1.75em;
+    color: #ffffff;
+}
+._list div{
+    display: flex;
+    gap: .7em;
+    align-items: center;
+    flex-wrap: wrap;
+}
