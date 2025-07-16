@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Logo-font';
-    src: url(ColonnaMT.TTF) format('truetype');
+    src: url(https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/ColonnaMT.TTF) format('truetype');
 }
 
 html, body {
@@ -433,7 +433,7 @@ ul{
 }
 ._list div{
     display: flex;
-    gap: .7em;
+    gap: 1em;
     align-items: center;
     flex-wrap: wrap;
 }
