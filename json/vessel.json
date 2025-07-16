@@ -35,7 +35,7 @@
         },
         "MT.WOOJIN_ELVIS": {
             "text": "MT. WOOJIN ELVIS",
-            "image": "./src/ELVIS.png",
+            "image": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/ELVIS.png",
             "desc":{
                 "imo" : "9442665",
                 "built": "2009",

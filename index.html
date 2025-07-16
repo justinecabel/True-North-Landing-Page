@@ -6,6 +6,7 @@
     <title>True North Maritime Corporation</title>
     <meta name="description" content="True North Maritime Corporation is a duly licensed and accredited private recruitment/employment agency by the Department of Migrant Workers(DMW).">
     
+
     <!-- Preconnect for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,12 +15,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" />
     
     <!-- Critical resources -->
-    <link rel="shortcut icon" href="./src/logo.png" type="image/png">
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/logo.png" type="image/png">
     <link rel="stylesheet" href="./src/style.css">
     
     <!-- Preload critical images -->
-    <link rel="preload" href="./src/logo.png" as="image" type="image/png">
-    <link rel="preload" href="./src/hero.png" as="image" type="image/png">
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/logo.png" as="image" type="image/png">
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/hero.png" as="image" type="image/png">
 </head>
 <body>
     <div id="loading-overlay">Loading...</div>
@@ -39,7 +40,7 @@
         </div>
         <div id="hero-text"></div>
         <button id="message-us">Contact Us</button>
-        <img src="./src/hero.png" alt="vessel" width="500" height="400" loading="eager">
+        <img src="https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/hero.png" alt="vessel" width="500" height="400" loading="eager">
     </div>
     <div class="tagline">
         <div>
@@ -86,13 +87,8 @@
     </div>
     <div class="_list">
         <span class="title">Certifications | Accreditations | Affiliations</span>
-        <div>
-            <img loading="lazy" src="https://dmw.gov.ph/assets/new-logo-b-ytW_U6.png" alt="DMW Logo" title="DMW Logo">
-            <img loading="lazy" src="https://marina.gov.ph/wp-content/uploads/2021/06/MARINA-LOGO.png" alt="MARINA Logo" title="MARINA Logo">
-            <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Securities_and_Exchange_Commission_of_the_Philippines_%28SEC%29.svg" alt="SEC Logo" title="SEC Logo">
-            <img loading="lazy" src="https://www.gcl.uk/wp-content/uploads/2020/06/gcl-logo.png" alt="SEC Logo" title="SEC Logo">
-            <!-- <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/f/f5/National_Privacy_Commission_Philippines.svg" alt="SEC Logo" title="SEC Logo"> -->
-            <img loading="lazy" src="./src/pamas.png" alt="SEC Logo" title="SEC Logo">
+        <div id="list_accre">
+            <!-- Logos are now loaded dynamically from json/_list.json -->
         </div>
     </div>
     <div id="hm1" class="horizontal-marque">
@@ -136,6 +132,38 @@
             const yearsSpan = document.getElementById('years-operating');
             if (yearsSpan) yearsSpan.textContent = years;
             
+            // Load accreditations
+            fetch('./json/_list.json')
+                .then(res => res.json())
+                .then(data => {
+                    const listContainer = document.getElementById('list_accre');
+                    if (!listContainer) return;
+
+                    const fragment = document.createDocumentFragment();
+                    for (const key in data) {
+                        const item = data[key];
+                        if (item.active === "true") {
+                            const img = document.createElement('img');
+                            img.src = item.logo;
+                            img.alt = `${key} Logo`;
+                            img.loading = 'lazy';
+
+                            if (item.url && item.url !== "#") {
+                                const link = document.createElement('a');
+                                link.href = item.url;
+                                link.target = '_blank';
+                                link.rel = 'noopener';
+                                link.appendChild(img);
+                                fragment.appendChild(link);
+                            } else {
+                                fragment.appendChild(img);
+                            }
+                        }
+                    }
+                    listContainer.appendChild(fragment);
+                })
+                .catch(error => console.error('Error loading accreditations:', error));
+
             // Optimized vessel marquee loading
             fetch('./json/vessel.json')
                 .then(res => res.json())
@@ -152,11 +180,12 @@
 
                     // Use fragment for better performance
                     const fragment = document.createDocumentFragment();
-                    vessels.forEach(vessel => {
+                    vessels.forEach((vessel, index) => {
                         const item = document.createElement('div');
                         item.className = 'item';
+                        const loadingStrategy = index < 3 ? 'eager' : 'lazy';
                         item.innerHTML = `
-                            <img src="${vessel.image}" alt="${vessel.text}" width="200" height="150" loading="lazy">
+                            <img src="${vessel.image}" alt="${vessel.text}" width="200" height="150" loading="${loadingStrategy}">
                             <span class="vessel-details hidden">IMO: ${vessel.desc.imo}<br>GRT: ${vessel.desc.grt}<br>Type: ${vessel.desc.type}<br>Flag: ${vessel.desc.flag}<br>Built: ${vessel.desc.built}</span>
                             <span class="name">${vessel.text}</span>
                         `;
