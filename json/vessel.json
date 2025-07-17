@@ -100,7 +100,7 @@
             }   
         }
     },
-    "gfsm":{
+    "ktm":{
         "MT.DS_PANTHER": {
             "text": "MT. DS PANTHER",
             "image": "https://static.vesselfinder.net/ship-photo/9361471-565591000-3d9c48cd0757a1c59c1ff5611dfc4c9d/1?v1",
@@ -122,29 +122,84 @@
                 "flag": "KOREA",
                 "type": "OIL/CHEM"
             }   
+        },
+        "MT.SKY_RUNNER": {
+            "text": "MT. SKY RUNNER",
+            "image": "https://static.vesselfinder.net/ship-photo/9381354-355176000-9e13f451be256094f36b979ec9872714/1?v1",
+            "desc":{
+                "imo" : "9381354",
+                "built": "2008",
+                "grt": "8,539",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
+        },
+        "MT.SKY_WINNER": {
+            "text": "MT. SKY WINNER",
+            "image": "https://static.vesselfinder.net/ship-photo/9366926-372484000-a99ec953f19639e1ace8e1b59de7b8a9/1?v1",
+            "desc":{
+                "imo" : "9366926",
+                "built": "2007",
+                "grt": "7,684",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
+        },
+        "MT.SKY_JOY": {
+            "text": "MT. SKY JOY",
+            "image": "https://static.vesselfinder.net/ship-photo/9366938-355231000-63ce60bb853f9a272f777e0d839707bb/1?v1",
+            "desc":{
+                "imo" : "9366938",
+                "built": "2007",
+                "grt": "7,688",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
         }
         
     },
-    "ktm":{
-        "MT.BEGONIA": {
-            "text": "MT.BEGONIA",
-            "image": "https://static.vesselfinder.net/ship-photo/9330381-440109000-216b15b76838380f37d837a8090e30b1/1?v1",
+    "gfsm":{
+        "MT.ONSAN_CHEMI": {
+            "text": "MT. ONSAN CHEMI",
+            "image": "https://static.vesselfinder.net/ship-photo/9438925-477201700-5ead32e58cfcacf2690d4a4bae9a0338/1?v1",
             "desc":{
-                "imo" : "9330381",
-                "built": "2005",
-                "grt": "8,259",
+                "imo" : "9438925",
+                "built": "2009",
+                "grt": "8,305",
                 "flag": "KOREA",
                 "type": "OIL/CHEM"
             }
         },
-        "MT.WOOJIN_CHEMI": {
-            "text": "MT.WOOJIN CHEMI",
-            "image": "https://static.vesselfinder.net/ship-photo/9272814-441921000-6ca3aa8ed25311278686113cd6f139c6/1?v1",
+        "MT.DAESAN_CHEMI": {
+            "text": "MT.DAESAN CHEMI",
+            "image": "https://static.vesselfinder.net/ship-photo/9303273-440020000-d87211cfdfdc84021494cea82e59a5b1/1?v1",
             "desc":{
-                "imo" : "9272814",
-                "built": "2003",
-                "grt": "5,347",
-                "flag": "MARSHALL ISLANDS",
+                "imo" : "9303273",
+                "built": "2004",
+                "grt": "7,240",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
+        },
+        "MT.THAI_CHEMI": {
+            "text": "MT.THAI CHEMI",
+            "image": "https://static.vesselfinder.net/ship-photo/0-319024300-eae44b39ae5ba511a8602b599b77c877/1?v1",
+            "desc":{
+                "imo" : "9330393",
+                "built": "2006",
+                "grt": "8,259",
+                "flag": "MARSHALL",
+                "type": "OIL/CHEM"
+            }   
+        },
+        "MT.BANGKOK_CHEMI": {
+            "text": "MT.BANGKOK CHEMI",
+            "image": "https://static.vesselfinder.net/ship-photo/9330410-538010253-29961d6b1e07556e70e9e848cc79a2ae/1?v1",
+            "desc":{
+                "imo" : "9330410",
+                "built": "2006",
+                "grt": "8,260",
+                "flag": "MARSHALL",
                 "type": "OIL/CHEM"
             }   
         }
