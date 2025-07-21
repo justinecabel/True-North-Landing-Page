@@ -5,23 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta title="True North Maritime Corporation">
     <title>True North Maritime Corporation</title>
-    <meta name="description" content="True North Maritime Corporation is a duly licensed and accredited private recruitment/employment/shipping agency by the Department of Migrant Workers(DMW). Located in Manila, Philippines. Vessels are currenlty Oil Chemical Tankers with principals in Korea. Also cash advance are available.">
-    
-
-    <!-- Preconnect for faster font loading -->
+    <meta name="description" content="True North Maritime Corporation is a duly licensed and accredited private recruitment sea-based agency by the Department of Migrant Workers(DMW). Located in Manila, Philippines. Vessels are currenlty Oil Chemical Tankers with principals in Korea. Also cash advance/remittance are available.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Font loading with display=swap for better performance -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" />
-    
-    <!-- Critical resources -->
     <link rel="shortcut icon" href="./src/logo-fav.png" type="image/png">
     <link rel="stylesheet" href="./src/style.css">
-    
-    <!-- Preload critical images -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/logo.png" as="image" type="image/png">
-    <link rel="preload" href="https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/hero.png" as="image" type="image/png">
 </head>
 <body>
     <div id="loading-overlay">Loading...</div>
@@ -88,9 +77,7 @@
     </div>
     <div class="_list">
         <span class="title">Certifications | Accreditations | Affiliations</span>
-        <div id="list_accre">
-            <!-- Logos are now loaded dynamically from json/_list.json -->
-        </div>
+        <div id="list_accre"></div>
     </div>
     <div id="hm1" class="horizontal-marque">
         <div class="marquee"></div>    
@@ -119,21 +106,15 @@
             </a>
         </div>
     </div>
-    
-    <!-- Deferred script loading for better performance -->
     <script src="./src/script.js" defer></script>
     <script defer>
-        // Years calculation moved to avoid blocking
         const foundedYear = 1997;
         const currentYear = new Date().getFullYear();
         const years = currentYear - foundedYear;
         
         document.addEventListener('DOMContentLoaded', function() {
-            // Set years immediately
             const yearsSpan = document.getElementById('years-operating');
             if (yearsSpan) yearsSpan.textContent = years;
-            
-            // Load accreditations
             fetch('./json/_list.json')
                 .then(res => res.json())
                 .then(data => {
@@ -164,8 +145,6 @@
                     listContainer.appendChild(fragment);
                 })
                 .catch(error => console.error('Error loading accreditations:', error));
-
-            // Optimized vessel marquee loading
             fetch('./json/vessel.json')
                 .then(res => res.json())
                 .then(data => {
@@ -174,12 +153,9 @@
                             ...vessel,
                             principal
                         }))
-                    );
-                    
+                    );                  
                     const marquee = document.querySelector('#hm1 .marquee');
                     if (!marquee || vessels.length === 0) return;
-
-                    // Use fragment for better performance
                     const fragment = document.createDocumentFragment();
                     vessels.forEach((vessel, index) => {
                         const item = document.createElement('div');
@@ -193,7 +169,6 @@
                         fragment.appendChild(item);
                     });
                     marquee.appendChild(fragment);
-
                     let marqueeState = {
                         pos: 0,
                         direction: 1,
@@ -203,7 +178,6 @@
                         resumeTimeout: null,
                         animationId: null
                     };
-
                     function setupMarquee() {
                         const container = marquee.parentElement;
                         const containerWidth = container.offsetWidth;
@@ -213,11 +187,8 @@
                         marqueeState.direction = 1;
                         marquee.style.transform = `translateX(0)`;
                     }
-
-                    // Use passive event listeners for better performance
                     marquee.addEventListener('mouseenter', () => marqueeState.speed = 0.25, { passive: true });
                     marquee.addEventListener('mouseleave', () => marqueeState.speed = 2, { passive: true });
-
                     function animateMarquee() {
                         if (marqueeState.running && marqueeState.maxOffset > 0) {
                             marqueeState.pos += marqueeState.speed * marqueeState.direction;
@@ -232,17 +203,13 @@
                             marquee.style.transform = `translateX(${-marqueeState.pos}px)`;
                             marqueeState.animationId = requestAnimationFrame(animateMarquee);
                         } else {
-                            // Stop animation when not running
                             if (marqueeState.animationId) {
                                 cancelAnimationFrame(marqueeState.animationId);
                                 marqueeState.animationId = null;
                             }
                         }
                     }
-
                     setupMarquee();
-
-                    // Intersection Observer for performance
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
                             if (entry.isIntersecting) {
@@ -250,7 +217,7 @@
                                 marqueeState.resumeTimeout = setTimeout(() => {
                                     marqueeState.running = true;
                                     if (!marqueeState.animationId) {
-                                        animateMarquee(); // Start animation only when needed
+                                        animateMarquee();
                                     }
                                 }, 100);
                             } else {
@@ -259,10 +226,7 @@
                             }
                         });
                     }, { threshold: 0.1 });
-
                     observer.observe(document.querySelector('#hm1'));
-                    
-                    // Cleanup function for better memory management
                     window.addEventListener('beforeunload', () => {
                         observer.disconnect();
                         if (marqueeState.animationId) {
@@ -274,12 +238,9 @@
                     });
                 })
                 .catch(error => console.error('Error loading vessels:', error));
-
-            // Single optimized fetch for TNMC data
             fetch('./json/tnmc.json')
                 .then(response => response.json())
                 .then(data => {
-                    // Batch DOM updates for better performance
                     const updates = [
                         ['hero-text', data['hero-text'], 'textContent'],
                         ['tagline-1', data['tagline-1'], 'textContent'],
@@ -289,7 +250,6 @@
                         ['vision_c', data['vision'], 'innerHTML'],
                         ['mission_c', data['mission'], 'innerHTML']
                     ];
-
                     updates.forEach(([selector, content, method]) => {
                         const element = selector.startsWith('.') ? 
                             document.querySelector(selector) : 
@@ -300,28 +260,20 @@
                     });
                 })
                 .catch(error => console.error('Error loading TNMC data:', error));
-
-            // Contact button functionality
             document.querySelectorAll('#nav-message-us, #message-us').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
-                    // Detect if the device is mobile using the User-Agent string
                     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
                     const isMobileByAgent = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
 
                     if (isMobileByAgent) {
-                        // On mobile devices (detected by User-Agent), use instant scroll
                         document.querySelector('.footer').scrollIntoView();
                     } else {
-                        // On desktop devices, use smooth scroll
                         document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
                     }
                 });
             });
         });
-
-        // Optimized loading overlay
         window.addEventListener('load', function() {
             const overlay = document.getElementById('loading-overlay');
             overlay.style.opacity = '0';
@@ -332,14 +284,10 @@
             }, 300);
         }, { once: true });
     </script>
-
-    <!-- Vercel Analytics -->
     <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
-
-    <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
     </script>

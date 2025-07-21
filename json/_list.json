@@ -1,12 +1,12 @@
 {
     "DMW": {
         "logo": "https://dmw.gov.ph/assets/new-logo-b-ytW_U6.png",
-        "url": "https://dmw.gov.ph/",
+        "url": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/dmw-certification-current.jpg",
         "active": "true"
     },
     "MARINA": {
         "logo": "https://marina.gov.ph/wp-content/uploads/2021/06/MARINA-LOGO.png",
-        "url": "https://marina.gov.ph/",
+        "url": "#",
         "active": "true"
     },
     "SEC": {
@@ -16,7 +16,7 @@
     },
     "GCL": {
         "logo": "https://www.gcl.uk/wp-content/uploads/2020/06/gcl-logo.png",
-        "url": "https://www.gcl.uk/",
+        "url": "#",
         "active": "true"
     },
     "PAMAS": {
