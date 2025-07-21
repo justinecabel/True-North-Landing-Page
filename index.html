@@ -115,7 +115,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const yearsSpan = document.getElementById('years-operating');
             if (yearsSpan) yearsSpan.textContent = years;
-            fetch('./json/_list.json') 
+            fetch('./json/list.json') 
                 .then(res => res.json())
                 .then(data => {
                     const listContainer = document.getElementById('list_accre');
