@@ -275,9 +275,10 @@ ul{
 
 .marquee .item img{
     border-radius: 0.25em;
-    width: 30em;
+    width: 90vw;
     object-fit: cover;
     height: 14em;
+    max-width: 32em;
 }
 
 .marquee{
@@ -382,7 +383,7 @@ ul{
     top: 4px;
     padding: 0.4em 0.5em;
     border-radius: 0.2em;
-    font-size: 0.65em;
+    font-size: 1em;
     text-shadow: 0px 2px 8px black;
     background-color: rgba(0, 0, 0, 0.85);
     transition: opacity 0.3s ease, visibility 0.3s ease;

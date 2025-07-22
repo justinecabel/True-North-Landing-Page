@@ -1,7 +1,7 @@
 {
     "DMW": {
         "logo": "https://dmw.gov.ph/assets/new-logo-b-ytW_U6.png",
-        "url": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/dmw/current.jpg",
+        "url": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/cert/dmw/current.jpg",
         "active": "true"
     },
     "MARINA": {
@@ -11,12 +11,12 @@
     },
     "SEC": {
         "logo": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Securities_and_Exchange_Commission_of_the_Philippines_%28SEC%29.svg",
-        "url": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/sec/current.jpg",
+        "url": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/cert/sec/current.jpg",
         "active": "true"
     },
     "GCL": {
         "logo": "https://www.gcl.uk/wp-content/uploads/2020/06/gcl-logo.png",
-        "url": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/gcl/current.jpg",
+        "url": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/cert/gcl/current.jpg",
         "active": "true"
     },
     "PAMAS": {
