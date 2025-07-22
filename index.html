@@ -6,6 +6,36 @@
     <meta title="True North Maritime Corporation">
     <title>True North Maritime Corporation</title>
     <meta name="description" content="True North Maritime Corporation is a duly licensed and accredited private recruitment sea-based agency by the Department of Migrant Workers(DMW). Located in Manila, Philippines. Vessels are currenlty Oil Chemical Tankers with principals in Korea. Also cash advance/remittance are available.">
+    <link rel="canonical" href="https://justinecabel.github.io/True-North-Landing-Page/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="True North Maritime Corporation">
+    <meta property="og:description" content="True North Maritime Corporation is a duly licensed and accredited private recruitment sea-based agency by the Department of Migrant Workers(DMW). Located in Manila, Philippines. Vessels are currenlty Oil Chemical Tankers with principals in Korea. Also cash advance/remittance are available.">
+    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/logo.png">
+    <meta property="og:url" content="https://truenorthmaritimecorp.com/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "True North Maritime Corporation",
+      "url": "https://truenorthmaritimecorp.com/",
+      "logo": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/logo.png",
+      "description": "True North Maritime Corporation is a duly licensed and accredited private recruitment sea-based agency by the Department of Migrant Workers(DMW). Located in Manila, Philippines. Vessels are currenlty Oil Chemical Tankers with principals in Korea. Also cash advance/remittance are available.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "10F Suite 1001 & 1003A, Ermita Center Building, 1350 Roxas Boulevard, Ermita",
+        "addressLocality": "Manila",
+        "postalCode": "1000",
+        "addressCountry": "PH"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+63-2-8567-5427",
+        "contactType": "customer service",
+        "email": "truenorthmaritimecorp@gmail.com"
+      }
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" />
@@ -14,9 +44,8 @@
 </head>
 <body>
     <div id="loading-overlay">Loading...</div>
-    <!-- Picture Viewer Modal -->
     <div id="cert-modal" style="display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;">
-        <span id="cert-modal-close" style="position:absolute;top:2em;right:2em;font-size:2em;color:white;cursor:pointer;">&times;</span>
+        <span id="cert-modal-close" style="position:absolute;top:2em;right:2em;font-size:2em;color:white;cursor:pointer;text-shadow:0 0 10px black;">&times;</span>
         <img id="cert-modal-img" src="" alt="Certification" style="max-width:90vw;max-height:80vh;box-shadow:0 0 20px #000;border-radius:1em;">
     </div>
     <nav>
@@ -120,12 +149,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             const yearsSpan = document.getElementById('years-operating');
             if (yearsSpan) yearsSpan.textContent = years;
-            fetch('./json/list.json') 
+            fetch('./json/list.json')
                 .then(res => res.json())
                 .then(data => {
                     const listContainer = document.getElementById('list_accre');
                     if (!listContainer) return;
-
                     const fragment = document.createDocumentFragment();
                     for (const key in data) {
                         const item = data[key];
@@ -135,76 +163,29 @@
                             img.alt = `${key} Logo`;
                             img.loading = 'lazy';
                             img.style.cursor = 'pointer';
-
                             img.addEventListener('click', function(e) {
                                 e.preventDefault();
                                 const modal = document.getElementById('cert-modal');
                                 const modalImg = document.getElementById('cert-modal-img');
-                                // If item.url is a valid image or page, use it as modal content
-                                if (item.url && item.url !== "#") {
-                                    // Try to detect if it's an image
-                                    const isImage = /\.(jpg|jpeg|png|gif|svg|webp)$/i.test(item.url);
-                                    if (isImage) {
-                                        modalImg.src = item.url;
-                                        modalImg.alt = img.alt;
-                                        modalImg.style.display = 'block';
-                                    } else {
-                                        // If not image, show iframe
-                                        modalImg.style.display = 'none';
-                                        let iframe = document.getElementById('cert-modal-iframe');
-                                        if (!iframe) {
-                                            iframe = document.createElement('iframe');
-                                            iframe.id = 'cert-modal-iframe';
-                                            iframe.style.maxWidth = '90vw';
-                                            iframe.style.maxHeight = '80vh';
-                                            iframe.style.borderRadius = '1em';
-                                            iframe.style.boxShadow = '0 0 20px #000';
-                                            iframe.style.background = '#fff';
-                                            iframe.style.border = 'none';
-                                            iframe.allow = 'fullscreen';
-                                            modal.appendChild(iframe);
-                                        }
-                                        iframe.src = item.url;
-                                        iframe.style.display = 'block';
-                                    }
-                                } else {
-                                    modalImg.src = item.logo;
-                                    modalImg.alt = img.alt;
-                                    modalImg.style.display = 'block';
-                                    const iframe = document.getElementById('cert-modal-iframe');
-                                    if (iframe) iframe.style.display = 'none';
-                                }
+                                modalImg.src = (item.url && item.url !== "#") ? item.url : item.logo;
+                                modalImg.alt = img.alt;
+                                modalImg.style.display = 'block';
                                 modal.style.display = 'flex';
                             });
-
-                            if (item.url && item.url !== "#") {
-                                const link = document.createElement('a');
-                                link.href = item.url;
-                                link.target = '_blank';
-                                link.rel = 'noopener';
-                                link.appendChild(img);
-                                fragment.appendChild(link);
-                            } else {
-                                fragment.appendChild(img);
-                            }
+                            fragment.appendChild(img);
                         }
                     }
                     listContainer.appendChild(fragment);
-                    // Modal close logic
                     const modal = document.getElementById('cert-modal');
                     const modalClose = document.getElementById('cert-modal-close');
                     modalClose.onclick = function() {
                         modal.style.display = 'none';
                         document.getElementById('cert-modal-img').src = '';
-                        const iframe = document.getElementById('cert-modal-iframe');
-                        if (iframe) iframe.style.display = 'none';
                     };
                     modal.onclick = function(e) {
                         if (e.target === modal) {
                             modal.style.display = 'none';
                             document.getElementById('cert-modal-img').src = '';
-                            const iframe = document.getElementById('cert-modal-iframe');
-                            if (iframe) iframe.style.display = 'none';
                         }
                     };
                 })
@@ -218,7 +199,6 @@
                             principal
                         }))
                     );
-                    // Shuffle vessels array
                     for (let i = vessels.length - 1; i > 0; i--) {
                         const j = Math.floor(Math.random() * (i + 1));
                         [vessels[i], vessels[j]] = [vessels[j], vessels[i]];
