@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta title="True North Maritime Corporation">
-    <title>True North Maritime Corporation</title>
+    <meta title="True North Maritime Corporation | DMW Accredited - Manila Philippines">
+    <title>True North Maritime Corporation | DMW Accredited - Manila Philippines</title>
     <meta name="description" content="True North Maritime Corporation is a duly licensed and accredited private recruitment sea-based agency by the Department of Migrant Workers(DMW). Located in Manila, Philippines. Vessels are currenlty Oil Chemical Tankers with principals in Korea. Also cash advance/remittance are available.">
     <link rel="canonical" href="https://justinecabel.github.io/True-North-Landing-Page/">
     <meta name="robots" content="index, follow">
@@ -193,16 +193,19 @@
             fetch('./json/vessel.json')
                 .then(res => res.json())
                 .then(data => {
-                    let vessels = Object.entries(data).flatMap(([principal, vesselsObj]) =>
+                    // Randomize the order of principals while keeping their vessels together
+                    let principals = Object.entries(data);
+                    for (let i = principals.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [principals[i], principals[j]] = [principals[j], principals[i]];
+                    }
+                    
+                    let vessels = principals.flatMap(([principal, vesselsObj]) =>
                         Object.values(vesselsObj).map(vessel => ({
                             ...vessel,
                             principal
                         }))
                     );
-                    for (let i = vessels.length - 1; i > 0; i--) {
-                        const j = Math.floor(Math.random() * (i + 1));
-                        [vessels[i], vessels[j]] = [vessels[j], vessels[i]];
-                    }
                     const marquee = document.querySelector('#hm1 .marquee');
                     if (!marquee || vessels.length === 0) return;
                     const fragment = document.createDocumentFragment();

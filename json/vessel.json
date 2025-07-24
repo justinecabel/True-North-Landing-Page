@@ -171,7 +171,7 @@
             }
         },
         "MT.DAESAN_CHEMI": {
-            "text": "MT.DAESAN CHEMI",
+            "text": "MT. DAESAN CHEMI",
             "image": "https://static.vesselfinder.net/ship-photo/9303273-440020000-d87211cfdfdc84021494cea82e59a5b1/1?v1",
             "desc":{
                 "imo" : "9303273",
@@ -182,7 +182,7 @@
             }   
         },
         "MT.THAI_CHEMI": {
-            "text": "MT.THAI CHEMI",
+            "text": "MT. THAI CHEMI",
             "image": "https://static.vesselfinder.net/ship-photo/0-319024300-eae44b39ae5ba511a8602b599b77c877/1?v1",
             "desc":{
                 "imo" : "9330393",
@@ -193,7 +193,7 @@
             }   
         },
         "MT.BANGKOK_CHEMI": {
-            "text": "MT.BANGKOK CHEMI",
+            "text": "MT. BANGKOK CHEMI",
             "image": "https://static.vesselfinder.net/ship-photo/9330410-538010253-29961d6b1e07556e70e9e848cc79a2ae/1?v1",
             "desc":{
                 "imo" : "9330410",
