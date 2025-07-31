@@ -26,7 +26,7 @@
     },
     "NPC": {
         "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f5/National_Privacy_Commission_Philippines.svg",
-        "url": "#",
-        "active": "false"
+        "url": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/cert/npc/current.jpg",
+        "active": "true"
     }
 }
