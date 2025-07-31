@@ -6,7 +6,7 @@
     },
     "MARINA": {
         "logo": "https://marina.gov.ph/wp-content/uploads/2021/06/MARINA-LOGO.png",
-        "url": "#",
+        "url": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/cert/marina/current.jpg",
         "active": "true"
     },
     "SEC": {
