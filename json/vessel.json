@@ -89,8 +89,8 @@
             }   
         },
         "MT.CLAYTON": {
-            "text": "MV. CLAYTON",
-            "image": "https://static.vesselfinder.net/images/cool-ship2@2.png",
+            "text": "MT. CLAYTON",
+            "image": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/clayton.jpg",
             "desc":{
                 "imo" : "1019979",
                 "built": "2025",
