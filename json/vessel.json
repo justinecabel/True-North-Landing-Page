@@ -1,16 +1,5 @@
 {
     "ojs":{
-        "MT.WOOJIN_CHEMI": {
-            "text": "MT. WOOJIN CHEMI",
-            "image": "https://static.vesselfinder.net/ship-photo/9272814-441921000-6ca3aa8ed25311278686113cd6f139c6/1?v1",
-            "desc":{
-                "imo" : "9272814",
-                "built": "2003",
-                "grt": "5,347",
-                "flag": "MARSHALL",
-                "type": "OIL/CHEM"
-            }   
-        },
         "MT.BEGONIA": {
             "text": "MT. BEGONIA",
             "image": "https://static.vesselfinder.net/ship-photo/9330381-440109000-216b15b76838380f37d837a8090e30b1/1?v1",
