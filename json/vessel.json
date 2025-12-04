@@ -88,8 +88,8 @@
                 "type": "OIL/CHEM"
             }   
         },
-        "MT.HANYU_AZALEA": {
-            "text": "MT. HANYU AZALEA",
+        "MT.AZALEA": {
+            "text": "MT. AZALEA",
             "image": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/hanyu_azalea.png",
             "desc":{
                 "imo" : "9940681",
