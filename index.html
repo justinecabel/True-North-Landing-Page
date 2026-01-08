@@ -142,9 +142,18 @@
     </div>
     <script src="./src/script.js" defer></script>
     <script defer>
-        const foundedYear = 1997;
-        const currentYear = new Date().getFullYear();
-        const years = currentYear - foundedYear;
+        const foundedDate = new Date(1997, 7, 24); // August 24, 1997 (month is 0-based)
+        const today = new Date();
+        let years = today.getFullYear() - foundedDate.getFullYear();
+        
+        // If today's date is before Aug 24 this year, subtract 1
+        if (
+          today.getMonth() < foundedDate.getMonth() ||
+          (today.getMonth() === foundedDate.getMonth() &&
+           today.getDate() < foundedDate.getDate())
+        ) {
+          years--;
+        }
         
         document.addEventListener('DOMContentLoaded', function() {
             const yearsSpan = document.getElementById('years-operating');
