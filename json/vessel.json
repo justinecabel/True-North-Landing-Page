@@ -155,6 +155,17 @@
                 "flag": "KOREA",
                 "type": "OIL/CHEM"
             }   
+        },
+        "New_Ship_2026": {
+            "text": "TBD",
+            "image": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/new_ship_2026.png",
+            "desc":{
+                "imo" : "TBD",
+                "built": "TBD",
+                "grt": "TBD",
+                "flag": "TBD",
+                "type": "OIL/CHEM"
+            }   
         }
         
     },
