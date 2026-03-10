@@ -660,26 +660,12 @@ ul{
 }
 
 @media (max-width: 640px) {
-    #facebook-modal {
-        display: none !important;
-    }
-
     .facebook-section {
         padding: 2rem 1rem;
     }
 
     .facebook-section-card {
         padding: 1rem 0;
-    }
-
-    .facebook-section-embed {
-        display: none;
-    }
-
-    .facebook-section-visit-btn {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .footer-company {

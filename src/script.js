@@ -279,6 +279,8 @@ window.addEventListener('DOMContentLoaded', function () {
 window.addEventListener('load', function () {
     const overlay = document.getElementById('loading-overlay');
     const facebookModal = document.getElementById('facebook-modal');
+    const facebookSectionEmbed = document.querySelector('.facebook-section-embed');
+    const facebookSectionVisitBtn = document.querySelector('.facebook-section-visit-btn');
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
     const isMobileBrowser = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
     const hideFacebookModal = () => {
@@ -289,6 +291,14 @@ window.addEventListener('load', function () {
 
     if (isMobileBrowser) {
         hideFacebookModal();
+        if (facebookSectionEmbed) {
+            facebookSectionEmbed.style.display = 'none';
+        }
+        if (facebookSectionVisitBtn) {
+            facebookSectionVisitBtn.style.display = 'inline-flex';
+            facebookSectionVisitBtn.style.justifyContent = 'center';
+            facebookSectionVisitBtn.style.alignItems = 'center';
+        }
     } else if (facebookModal) {
         const modalCloseButton = document.getElementById('facebook-modal-x');
         if (modalCloseButton) {
