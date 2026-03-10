@@ -17,7 +17,7 @@ body {
 
 /* Make vertical scrollbars look flush with the layout */
 html {
-    scrollbar-gutter: stable;
+    /* scrollbar-gutter: stable; */
     scrollbar-width: thin;
     scrollbar-color: #4e4e4e #161616;
 }
