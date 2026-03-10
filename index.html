@@ -44,6 +44,19 @@
 </head>
 <body>
     <div id="loading-overlay">Loading...</div>
+    <div id="facebook-modal" aria-hidden="true">
+        <div class="facebook-modal-card" role="dialog" aria-modal="true" aria-label="Facebook post popup">
+            <div class="facebook-modal-header">
+                <button type="button" class="facebook-modal-close" id="facebook-modal-x" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="facebook-modal-frame">
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02KP5GpKAuXqrekzwq4z6rrBwpRQhL8ThDNxEPSsH8ibxvWiPktFYfCkgfQZH1XpE9l%26id%3D61586195379866&show_text=false&width=350" width="350" height="316" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
+            <div class="facebook-modal-actions">
+                <a class="facebook-visit-btn" href="https://www.facebook.com/profile.php?id=61586195379866" target="_blank" rel="noopener"><b>Visit Facebook Page</b></a>
+            </div>
+        </div>
+    </div>
     <div id="cert-modal" style="display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;">
         <span id="cert-modal-close" style="position:absolute;top:2em;right:2em;font-size:2em;color:white;cursor:pointer;text-shadow:0 0 10px black;">&times;</span>
         <img id="cert-modal-img" src="" alt="Certification" style="max-width:90vw;max-height:80vh;box-shadow:0 0 20px #000;border-radius:1em;">
@@ -116,254 +129,57 @@
     <div id="hm1" class="horizontal-marque">
         <div class="marquee"></div>    
     </div>
+    <section class="facebook-section" aria-labelledby="facebook-section-title">
+        <div class="facebook-section-card">
+            <h2 id="facebook-section-title">Follow Us on Facebook</h2>
+            <p>See updates and announcements directly from our official page.</p>
+            <div class="facebook-section-embed">
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02KP5GpKAuXqrekzwq4z6rrBwpRQhL8ThDNxEPSsH8ibxvWiPktFYfCkgfQZH1XpE9l%26id%3D61586195379866&show_text=false&width=500" width="500" height="452" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
+        </div>
+    </section>
     <div class="footer">
-        <span style="
-            font-size: x-large;  
-            padding: 0 1.2em 0.5em;  
-        "><b>TRUE NORTH Maritime Corporation</b></span>
-        <span><b>President:</b> Capt. Danilo I. Acenas</span>
-        <span><b>Address:</b> <a href="https://www.google.com/maps/dir/?api=1&destination=True+North+Maritime+Corporation%2C+Suite+1001+%26+1003A%2C+Ermita+Center+Building%2C+1350+Roxas+Boulevard%2C+Ermita%2C+Manila%2C+1000%2C+Metro+Manila" target="_blank" rel="noopener">10F Suite 1001 & 1003A, Ermita Center Building, 1350 Roxas Boulevard, Ermita, Manila, 1000, Metro Manila</a></span>
-        <span><b>Tel.:</b> (632) 8567-5427 | (632) 8526-7535 | (632) 88526-7502</span>
-        <span><b>E-Mail:</b> <a href="mailto:truenorthmaritimecorp@gmail.com" target="_blank">truenorthmaritimecorp@gmail.com</a> | <a href="mailto:truenorthmaritimecorp@yahoo.com" target="_blank">truenorthmaritimecorp@yahoo.com</a></span>
-        <span><b>Facebook:</b> <a href="https://www.facebook.com/profile.php?id=61586195379866" target="_blank" rel="noopener">True North Maritime Corp.</a></span>
-        <hr style="
-            width: calc(100vw - 4em);
-            border-color: #0792fd7d;;
-            margin: 2em;
-        ">
+        <div class="footer-company">
+            <div class="footer-company-grid">
+                <div class="footer-info-card">
+                    <span class="footer-label">President</span>
+                    <span class="footer-value">Capt. Danilo I. Acenas</span>
+                </div>
+                <div class="footer-info-card">
+                    <span class="footer-label">Telephone</span>
+                    <span class="footer-value">(632) 8567-5427 | (632) 8526-7535 | (632) 88526-7502</span>
+                </div>
+                <div class="footer-info-card">
+                    <span class="footer-label">Email</span>
+                    <span class="footer-value"><a href="mailto:truenorthmaritimecorp@gmail.com" target="_blank">truenorthmaritimecorp@gmail.com</a> | <a href="mailto:truenorthmaritimecorp@yahoo.com" target="_blank">truenorthmaritimecorp@yahoo.com</a></span>
+                </div>
+                <div class="footer-info-card">
+                    <span class="footer-label">Facebook</span>
+                    <span class="footer-value"><a href="https://www.facebook.com/profile.php?id=61586195379866" target="_blank" rel="noopener">True North Maritime Corp.</a></span>
+                </div>
+                <div class="footer-info-card" style="grid-column: 1 / -1;">
+                    <span class="footer-label">Address</span>
+                    <span class="footer-value"><a href="https://www.google.com/maps/dir/?api=1&destination=True+North+Maritime+Corporation%2C+Suite+1001+%26+1003A%2C+Ermita+Center+Building%2C+1350+Roxas+Boulevard%2C+Ermita%2C+Manila%2C+1000%2C+Metro+Manila" target="_blank" rel="noopener">10F Suite 1001 & 1003A, Ermita Center Building, 1350 Roxas Boulevard, Ermita, Manila, 1000, Metro Manila</a></span>
+                </div>
+            </div>
+        </div>
+        <hr class="footer-divider">
         <div id="credits">
             <span style="
                     text-align: center;
                     padding: 0;
-            ">Images from vesselfinder.com | marinevesseltraffic.com</span>
+            " class ="credits">Images from vesselfinder.com | marinevesseltraffic.com</span>
             <a style="display: none;" href="https://github.com/justinecabel" target="_blank" rel="noopener">
                 <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="github-logo" loading="lazy">
             </a>
         </div>
     </div>
     <script src="./src/script.js" defer></script>
-    <script defer>
-        const foundedDate = new Date(1997, 7, 24); // August 24, 1997 (month is 0-based)
-        const today = new Date();
-        let years = today.getFullYear() - foundedDate.getFullYear();
-        
-        // If today's date is before Aug 24 this year, subtract 1
-        if (
-          today.getMonth() < foundedDate.getMonth() ||
-          (today.getMonth() === foundedDate.getMonth() &&
-           today.getDate() < foundedDate.getDate())
-        ) {
-          years--;
-        }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const yearsSpan = document.getElementById('years-operating');
-            if (yearsSpan) yearsSpan.textContent = years;
-            fetch('./json/list.json')
-                .then(res => res.json())
-                .then(data => {
-                    const listContainer = document.getElementById('list_accre');
-                    if (!listContainer) return;
-                    const fragment = document.createDocumentFragment();
-                    for (const key in data) {
-                        const item = data[key];
-                        if (item.active === "true") {
-                            const img = document.createElement('img');
-                            img.src = item.logo;
-                            img.alt = `${key} Logo`;
-                            img.loading = 'lazy';
-                            img.style.cursor = 'pointer';
-                            img.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                const modal = document.getElementById('cert-modal');
-                                const modalImg = document.getElementById('cert-modal-img');
-                                modalImg.src = (item.url && item.url !== "#") ? item.url : item.logo;
-                                modalImg.alt = img.alt;
-                                modalImg.style.display = 'block';
-                                modal.style.display = 'flex';
-                            });
-                            fragment.appendChild(img);
-                        }
-                    }
-                    listContainer.appendChild(fragment);
-                    const modal = document.getElementById('cert-modal');
-                    const modalClose = document.getElementById('cert-modal-close');
-                    modalClose.onclick = function() {
-                        modal.style.display = 'none';
-                        document.getElementById('cert-modal-img').src = '';
-                    };
-                    modal.onclick = function(e) {
-                        if (e.target === modal) {
-                            modal.style.display = 'none';
-                            document.getElementById('cert-modal-img').src = '';
-                        }
-                    };
-                })
-                .catch(error => console.error('Error loading accreditations:', error));
-            fetch('./json/vessel.json')
-                .then(res => res.json())
-                .then(data => {
-                    // Randomize the order of principals while keeping their vessels together
-                    let principals = Object.entries(data);
-                    for (let i = principals.length - 1; i > 0; i--) {
-                        const j = Math.floor(Math.random() * (i + 1));
-                        [principals[i], principals[j]] = [principals[j], principals[i]];
-                    }
-                    
-                    let vessels = principals.flatMap(([principal, vesselsObj]) =>
-                        Object.values(vesselsObj).map(vessel => ({
-                            ...vessel,
-                            principal
-                        }))
-                    );
-                    const marquee = document.querySelector('#hm1 .marquee');
-                    if (!marquee || vessels.length === 0) return;
-                    const fragment = document.createDocumentFragment();
-                    vessels.forEach((vessel, index) => {
-                        const item = document.createElement('div');
-                        item.className = 'item';
-                        const loadingStrategy = index < 3 ? 'eager' : 'lazy';
-                        item.innerHTML = `
-                            <img src="${vessel.image}" alt="${vessel.text}" width="200" height="150" loading="${loadingStrategy}">
-                            <span class="vessel-details hidden">IMO: ${vessel.desc.imo}<br>GRT: ${vessel.desc.grt}<br>Type: ${vessel.desc.type}<br>Flag: ${vessel.desc.flag}<br>Built: ${vessel.desc.built}</span>
-                            <span class="name">${vessel.text}</span>
-                        `;
-                        fragment.appendChild(item);
-                    });
-                    marquee.appendChild(fragment);
-                    let marqueeState = {
-                        pos: 0,
-                        direction: 1,
-                        speed: 2,
-                        running: false,
-                        maxOffset: 0,
-                        resumeTimeout: null,
-                        animationId: null
-                    };
-                    function setupMarquee() {
-                        const container = marquee.parentElement;
-                        const containerWidth = container.offsetWidth;
-                        const marqueeWidth = marquee.scrollWidth;
-                        marqueeState.maxOffset = Math.max(0, marqueeWidth - containerWidth);
-                        marqueeState.pos = 0;
-                        marqueeState.direction = 1;
-                        marquee.style.transform = `translateX(0)`;
-                    }
-                    marquee.addEventListener('mouseenter', () => marqueeState.speed = 0.25, { passive: true });
-                    marquee.addEventListener('mouseleave', () => marqueeState.speed = 2, { passive: true });
-                    function animateMarquee() {
-                        if (marqueeState.running && marqueeState.maxOffset > 0) {
-                            marqueeState.pos += marqueeState.speed * marqueeState.direction;
-                            if (marqueeState.pos > marqueeState.maxOffset) {
-                                marqueeState.pos = marqueeState.maxOffset;
-                                marqueeState.direction = -1;
-                            }
-                            if (marqueeState.pos < 0) {
-                                marqueeState.pos = 0;
-                                marqueeState.direction = 1;
-                            }
-                            marquee.style.transform = `translateX(${-marqueeState.pos}px)`;
-                            marqueeState.animationId = requestAnimationFrame(animateMarquee);
-                        } else {
-                            if (marqueeState.animationId) {
-                                cancelAnimationFrame(marqueeState.animationId);
-                                marqueeState.animationId = null;
-                            }
-                        }
-                    }
-                    setupMarquee();
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                if (marqueeState.resumeTimeout) clearTimeout(marqueeState.resumeTimeout);
-                                marqueeState.resumeTimeout = setTimeout(() => {
-                                    marqueeState.running = true;
-                                    if (!marqueeState.animationId) {
-                                        animateMarquee();
-                                    }
-                                }, 100);
-                            } else {
-                                marqueeState.running = false;
-                                if (marqueeState.resumeTimeout) clearTimeout(marqueeState.resumeTimeout);
-                            }
-                        });
-                    }, { threshold: 0.1 });
-                    observer.observe(document.querySelector('#hm1'));
-                    window.addEventListener('beforeunload', () => {
-                        observer.disconnect();
-                        if (marqueeState.animationId) {
-                            cancelAnimationFrame(marqueeState.animationId);
-                        }
-                        if (marqueeState.resumeTimeout) {
-                            clearTimeout(marqueeState.resumeTimeout);
-                        }
-                    });
-                })
-                .catch(error => console.error('Error loading vessels:', error));
-            fetch('./json/tnmc.json')
-                .then(response => response.json())
-                .then(data => {
-                    const updates = [
-                        ['hero-text', data['hero-text'], 'textContent'],
-                        ['tagline-1', data['tagline-1'], 'textContent'],
-                        ['tagline-2', data['tagline-2'], 'textContent'],
-                        ['tagline-3', data['tagline-3'], 'textContent'],
-                        ['.company_profile #text', data['company_profile'], 'innerHTML'],
-                        ['vision_c', data['vision'], 'innerHTML'],
-                        ['mission_c', data['mission'], 'innerHTML']
-                    ];
-                    updates.forEach(([selector, content, method]) => {
-                        const element = selector.startsWith('.') ? 
-                            document.querySelector(selector) : 
-                            document.getElementById(selector);
-                        if (element && content) {
-                            element[method] = content;
-                        }
-                    });
-                })
-                .catch(error => console.error('Error loading TNMC data:', error));
-            document.querySelectorAll('#nav-message-us, #message-us').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-                    const isMobileByAgent = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-
-                    if (isMobileByAgent) {
-                        document.querySelector('.footer').scrollIntoView();
-                    } else {
-                        document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
-        });
-        window.addEventListener('load', function() {
-            const overlay = document.getElementById('loading-overlay');
-            overlay.style.opacity = '0';
-            overlay.style.transition = 'opacity 0.3s';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-                document.body.classList.add('loaded');
-            }, 300);
-        }, { once: true });
-    </script>
-    <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
     <script defer src="/_vercel/insights/script.js"></script>
-    <script>
-        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-    </script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFXY68JSLE"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-GFXY68JSLE');
-    </script>
 
 </body>
 </html>
