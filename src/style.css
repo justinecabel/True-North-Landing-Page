@@ -587,6 +587,21 @@ ul{
     border: none;
 }
 
+.facebook-section-visit-btn {
+    display: none;
+    margin: 0.5rem auto 0;
+    width: fit-content;
+    border: 0;
+    border-radius: 999px;
+    padding: 0.7rem 1rem;
+    font: inherit;
+    text-decoration: none;
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(7, 146, 253, 0.92), rgba(11, 111, 209, 0.84));
+    box-shadow: 0 10px 24px rgba(7, 146, 253, 0.24);
+    font-weight: 800;
+}
+
 .footer-company {
     width: min(100%, 980px);
     margin: 0 auto;
@@ -645,6 +660,10 @@ ul{
 }
 
 @media (max-width: 640px) {
+    #facebook-modal {
+        display: none !important;
+    }
+
     .facebook-section {
         padding: 2rem 1rem;
     }
@@ -653,9 +672,14 @@ ul{
         padding: 1rem 0;
     }
 
-    .facebook-section-embed iframe {
-        max-width: 350px;
-        height: 316px;
+    .facebook-section-embed {
+        display: none;
+    }
+
+    .facebook-section-visit-btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .footer-company {

@@ -279,17 +279,27 @@ window.addEventListener('DOMContentLoaded', function () {
 window.addEventListener('load', function () {
     const overlay = document.getElementById('loading-overlay');
     const facebookModal = document.getElementById('facebook-modal');
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isMobileBrowser = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
     const hideFacebookModal = () => {
+        if (!facebookModal) return;
         facebookModal.style.display = 'none';
         facebookModal.setAttribute('aria-hidden', 'true');
     };
 
-    document.getElementById('facebook-modal-x').addEventListener('click', hideFacebookModal);
-    facebookModal.addEventListener('click', function (e) {
-        if (e.target === facebookModal) {
-            hideFacebookModal();
+    if (isMobileBrowser) {
+        hideFacebookModal();
+    } else if (facebookModal) {
+        const modalCloseButton = document.getElementById('facebook-modal-x');
+        if (modalCloseButton) {
+            modalCloseButton.addEventListener('click', hideFacebookModal);
         }
-    });
+        facebookModal.addEventListener('click', function (e) {
+            if (e.target === facebookModal) {
+                hideFacebookModal();
+            }
+        });
+    }
 
     window.__jsonReadyPromise.finally(() => {
         if (overlay) {
@@ -302,8 +312,10 @@ window.addEventListener('load', function () {
                 overlay.style.display = 'none';
             }
             document.body.classList.add('loaded');
-            facebookModal.style.display = 'flex';
-            facebookModal.setAttribute('aria-hidden', 'false');
+            if (!isMobileBrowser && facebookModal) {
+                facebookModal.style.display = 'flex';
+                facebookModal.setAttribute('aria-hidden', 'false');
+            }
         }, 300);
     });
 }, { once: true });
