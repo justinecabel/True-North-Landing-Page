@@ -36,6 +36,12 @@
       }
     }
     </script>
+    <script>
+        (function () {
+            var systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            document.documentElement.dataset.theme = systemTheme;
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" />
@@ -43,27 +49,13 @@
     <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
-    <div id="loading-overlay">Loading...</div>
-    <div id="facebook-modal" aria-hidden="true">
-        <div class="facebook-modal-card" role="dialog" aria-modal="true" aria-label="Facebook post popup">
-            <div class="facebook-modal-header">
-                <button type="button" class="facebook-modal-close" id="facebook-modal-x" aria-label="Close modal">&times;</button>
-            </div>
-            <div class="facebook-modal-frame">
-                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02KP5GpKAuXqrekzwq4z6rrBwpRQhL8ThDNxEPSsH8ibxvWiPktFYfCkgfQZH1XpE9l%26id%3D61586195379866&show_text=false&width=350" width="350" height="316" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-            </div>
-            <div class="facebook-modal-actions">
-                <a class="facebook-visit-btn" href="https://www.facebook.com/profile.php?id=61586195379866" target="_blank" rel="noopener"><b>Visit Facebook Page</b></a>
-            </div>
-        </div>
-    </div>
     <div id="cert-modal" style="display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;">
         <span id="cert-modal-close" style="position:absolute;top:2em;right:2em;font-size:2em;color:white;cursor:pointer;text-shadow:0 0 10px black;">&times;</span>
         <img id="cert-modal-img" src="" alt="Certification" style="max-width:90vw;max-height:80vh;box-shadow:0 0 20px #000;border-radius:1em;">
     </div>
     <nav>
         <div class="left">
-           <img src="https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/logo.png" alt="logo" width="50" height="50" loading="eager">
+           <img src="https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/logo.png" alt="logo" width="50" height="50" loading="eager" draggable="false">
         </div>
         <div class="right">
             <button id="nav-message-us">
@@ -77,7 +69,7 @@
         </div>
         <div id="hero-text"></div>
         <button id="message-us">Contact Us</button>
-        <img src="https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/hero.png" alt="vessel" width="500" height="400" loading="eager">
+        <img src="./src/hero-trimmed.png" alt="vessel" width="479" height="426" loading="eager" draggable="false">
     </div>
     <div class="tagline">
         <div>

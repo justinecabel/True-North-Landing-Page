@@ -18,7 +18,47 @@ gtag('config', 'G-GFXY68JSLE');
 
 window.__jsonReadyPromise = Promise.resolve();
 
+function setSystemTheme() {
+    const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.dataset.theme = systemTheme;
+}
+
 window.addEventListener('DOMContentLoaded', function () {
+    const systemThemeQuery = window.matchMedia('(prefers-color-scheme: light)');
+
+    setSystemTheme();
+    if (systemThemeQuery.addEventListener) {
+        systemThemeQuery.addEventListener('change', setSystemTheme);
+    } else {
+        systemThemeQuery.addListener(setSystemTheme);
+    }
+    document.querySelectorAll('img').forEach(img => {
+        img.draggable = false;
+    });
+    const getScrollTop = () => (
+        window.scrollY ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0
+    );
+    const updateNavContrast = () => {
+        document.body.classList.toggle('nav-scrolled', getScrollTop() > 2);
+    };
+    let navContrastTicking = false;
+    const scheduleNavContrastUpdate = () => {
+        if (navContrastTicking) return;
+        navContrastTicking = true;
+        window.requestAnimationFrame(() => {
+            updateNavContrast();
+            navContrastTicking = false;
+        });
+    };
+    updateNavContrast();
+    window.addEventListener('scroll', scheduleNavContrastUpdate, { passive: true });
+    document.addEventListener('scroll', scheduleNavContrastUpdate, { passive: true, capture: true });
+    window.addEventListener('resize', updateNavContrast, { passive: true });
+    window.setInterval(updateNavContrast, 250);
+
     const taglines = document.querySelectorAll('.tagline > div');
     let current = 0;
 
@@ -85,6 +125,7 @@ window.addEventListener('DOMContentLoaded', function () {
                     img.src = item.logo;
                     img.alt = `${key} Logo`;
                     img.loading = 'lazy';
+                    img.draggable = false;
                     img.style.cursor = 'pointer';
                     img.addEventListener('click', function (e) {
                         e.preventDefault();
@@ -137,7 +178,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 item.className = 'item';
                 const loadingStrategy = index < 3 ? 'eager' : 'lazy';
                 item.innerHTML = `
-                    <img src="${vessel.image}" alt="${vessel.text}" width="200" height="150" loading="${loadingStrategy}">
+                    <img src="${vessel.image}" alt="${vessel.text}" width="200" height="150" loading="${loadingStrategy}" draggable="false">
                     <span class="vessel-details hidden">IMO: ${vessel.desc.imo}<br>GRT: ${vessel.desc.grt}<br>Type: ${vessel.desc.type}<br>Flag: ${vessel.desc.flag}<br>Built: ${vessel.desc.built}</span>
                     <span class="name">${vessel.text}</span>
                 `;
@@ -152,21 +193,131 @@ window.addEventListener('DOMContentLoaded', function () {
                 running: false,
                 maxOffset: 0,
                 resumeTimeout: null,
-                animationId: null
+                animationId: null,
+                isInView: false,
+                isPointerDown: false,
+                dragStartX: 0,
+                dragStartPos: 0
             };
+            const marqueeContainer = marquee.parentElement;
+            const resumeDelay = 2500;
+
+            function clampMarqueePosition(value) {
+                return Math.min(Math.max(value, 0), marqueeState.maxOffset);
+            }
+
+            function applyMarqueePosition(value) {
+                marqueeState.pos = clampMarqueePosition(value);
+                marquee.style.transform = `translateX(${-marqueeState.pos}px)`;
+            }
+
+            function stopMarquee() {
+                marqueeState.running = false;
+                if (marqueeState.resumeTimeout) {
+                    clearTimeout(marqueeState.resumeTimeout);
+                    marqueeState.resumeTimeout = null;
+                }
+                if (marqueeState.animationId) {
+                    cancelAnimationFrame(marqueeState.animationId);
+                    marqueeState.animationId = null;
+                }
+            }
+
+            function startMarquee(delay = 0) {
+                if (!marqueeState.isInView || marqueeState.maxOffset <= 0 || marqueeState.isPointerDown) return;
+                if (marqueeState.resumeTimeout) clearTimeout(marqueeState.resumeTimeout);
+                marqueeState.resumeTimeout = setTimeout(() => {
+                    marqueeState.resumeTimeout = null;
+                    if (!marqueeState.isInView || marqueeState.isPointerDown) return;
+                    marqueeState.running = true;
+                    if (!marqueeState.animationId) {
+                        animateMarquee();
+                    }
+                }, delay);
+            }
+
+            function resumeMarqueeAfterDelay() {
+                startMarquee(resumeDelay);
+            }
 
             function setupMarquee() {
-                const container = marquee.parentElement;
-                const containerWidth = container.offsetWidth;
+                const containerWidth = marqueeContainer.offsetWidth;
                 const marqueeWidth = marquee.scrollWidth;
                 marqueeState.maxOffset = Math.max(0, marqueeWidth - containerWidth);
-                marqueeState.pos = 0;
-                marqueeState.direction = 1;
-                marquee.style.transform = 'translateX(0)';
+                applyMarqueePosition(marqueeState.pos);
             }
 
             marquee.addEventListener('mouseenter', () => marqueeState.speed = 0.25, { passive: true });
             marquee.addEventListener('mouseleave', () => marqueeState.speed = 2, { passive: true });
+
+            function beginManualScroll(clientX) {
+                stopMarquee();
+                marqueeState.isPointerDown = true;
+                marqueeState.dragStartX = clientX;
+                marqueeState.dragStartPos = marqueeState.pos;
+                marqueeContainer.classList.add('is-dragging');
+            }
+
+            function updateManualScroll(clientX) {
+                if (!marqueeState.isPointerDown) return;
+                const dragDistance = clientX - marqueeState.dragStartX;
+                applyMarqueePosition(marqueeState.dragStartPos - dragDistance);
+            }
+
+            function endManualScroll() {
+                if (!marqueeState.isPointerDown) return;
+                marqueeState.isPointerDown = false;
+                marqueeContainer.classList.remove('is-dragging');
+                resumeMarqueeAfterDelay();
+            }
+
+            marqueeContainer.addEventListener('pointerdown', (event) => {
+                if (event.button !== 0 && event.pointerType === 'mouse') return;
+                beginManualScroll(event.clientX);
+                marqueeContainer.setPointerCapture(event.pointerId);
+                event.preventDefault();
+            });
+            marqueeContainer.addEventListener('pointermove', (event) => {
+                updateManualScroll(event.clientX);
+                if (marqueeState.isPointerDown) event.preventDefault();
+            });
+
+            function endPointerScroll(event) {
+                if (marqueeContainer.hasPointerCapture(event.pointerId)) {
+                    marqueeContainer.releasePointerCapture(event.pointerId);
+                }
+                endManualScroll();
+            }
+
+            marqueeContainer.addEventListener('pointerup', endPointerScroll);
+            marqueeContainer.addEventListener('pointercancel', endPointerScroll);
+            marqueeContainer.addEventListener('mousedown', (event) => {
+                if (event.button !== 0) return;
+                beginManualScroll(event.clientX);
+                event.preventDefault();
+            });
+            window.addEventListener('mousemove', (event) => {
+                updateManualScroll(event.clientX);
+                if (marqueeState.isPointerDown) event.preventDefault();
+            });
+            window.addEventListener('mouseup', endManualScroll);
+            marqueeContainer.addEventListener('touchstart', (event) => {
+                if (event.touches.length !== 1) return;
+                beginManualScroll(event.touches[0].clientX);
+            }, { passive: true });
+            marqueeContainer.addEventListener('touchmove', (event) => {
+                if (event.touches.length !== 1) return;
+                updateManualScroll(event.touches[0].clientX);
+                if (marqueeState.isPointerDown) event.preventDefault();
+            }, { passive: false });
+            marqueeContainer.addEventListener('touchend', endManualScroll);
+            marqueeContainer.addEventListener('touchcancel', endManualScroll);
+            window.addEventListener('resize', () => {
+                setupMarquee();
+                if (marqueeState.isInView && !marqueeState.running) {
+                    resumeMarqueeAfterDelay();
+                }
+            }, { passive: true });
 
             function animateMarquee() {
                 if (marqueeState.running && marqueeState.maxOffset > 0) {
@@ -179,7 +330,7 @@ window.addEventListener('DOMContentLoaded', function () {
                         marqueeState.pos = 0;
                         marqueeState.direction = 1;
                     }
-                    marquee.style.transform = `translateX(${-marqueeState.pos}px)`;
+                    applyMarqueePosition(marqueeState.pos);
                     marqueeState.animationId = requestAnimationFrame(animateMarquee);
                 } else if (marqueeState.animationId) {
                     cancelAnimationFrame(marqueeState.animationId);
@@ -190,17 +341,11 @@ window.addEventListener('DOMContentLoaded', function () {
             setupMarquee();
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
+                    marqueeState.isInView = entry.isIntersecting;
                     if (entry.isIntersecting) {
-                        if (marqueeState.resumeTimeout) clearTimeout(marqueeState.resumeTimeout);
-                        marqueeState.resumeTimeout = setTimeout(() => {
-                            marqueeState.running = true;
-                            if (!marqueeState.animationId) {
-                                animateMarquee();
-                            }
-                        }, 100);
+                        startMarquee(100);
                     } else {
-                        marqueeState.running = false;
-                        if (marqueeState.resumeTimeout) clearTimeout(marqueeState.resumeTimeout);
+                        stopMarquee();
                     }
                 });
             }, { threshold: 0.1 });
@@ -243,6 +388,25 @@ window.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error loading TNMC data:', error));
 
     window.__jsonReadyPromise = Promise.allSettled([listPromise, vesselPromise, tnmcPromise]);
+    window.__jsonReadyPromise.finally(() => {
+        document.body.classList.add('loaded');
+    });
+
+    const facebookSectionEmbed = document.querySelector('.facebook-section-embed');
+    const facebookSectionVisitBtn = document.querySelector('.facebook-section-visit-btn');
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isMobileBrowser = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+
+    if (isMobileBrowser) {
+        if (facebookSectionEmbed) {
+            facebookSectionEmbed.style.display = 'none';
+        }
+        if (facebookSectionVisitBtn) {
+            facebookSectionVisitBtn.style.display = 'inline-flex';
+            facebookSectionVisitBtn.style.justifyContent = 'center';
+            facebookSectionVisitBtn.style.alignItems = 'center';
+        }
+    }
 
     document.querySelectorAll('#nav-message-us, #message-us').forEach(btn => {
         btn.addEventListener('click', function (e) {
@@ -275,58 +439,3 @@ window.addEventListener('DOMContentLoaded', function () {
         footerObserver.observe(footer);
     }
 });
-
-window.addEventListener('load', function () {
-    const overlay = document.getElementById('loading-overlay');
-    const facebookModal = document.getElementById('facebook-modal');
-    const facebookSectionEmbed = document.querySelector('.facebook-section-embed');
-    const facebookSectionVisitBtn = document.querySelector('.facebook-section-visit-btn');
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const isMobileBrowser = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-    const hideFacebookModal = () => {
-        if (!facebookModal) return;
-        facebookModal.style.display = 'none';
-        facebookModal.setAttribute('aria-hidden', 'true');
-    };
-
-    if (isMobileBrowser) {
-        hideFacebookModal();
-        if (facebookSectionEmbed) {
-            facebookSectionEmbed.style.display = 'none';
-        }
-        if (facebookSectionVisitBtn) {
-            facebookSectionVisitBtn.style.display = 'inline-flex';
-            facebookSectionVisitBtn.style.justifyContent = 'center';
-            facebookSectionVisitBtn.style.alignItems = 'center';
-        }
-    } else if (facebookModal) {
-        const modalCloseButton = document.getElementById('facebook-modal-x');
-        if (modalCloseButton) {
-            modalCloseButton.addEventListener('click', hideFacebookModal);
-        }
-        facebookModal.addEventListener('click', function (e) {
-            if (e.target === facebookModal) {
-                hideFacebookModal();
-            }
-        });
-    }
-
-    window.__jsonReadyPromise.finally(() => {
-        if (overlay) {
-            overlay.style.opacity = '0';
-            overlay.style.transition = 'opacity 0.3s';
-        }
-
-        setTimeout(() => {
-            if (overlay) {
-                overlay.style.display = 'none';
-            }
-            document.body.classList.add('loaded');
-            if (!isMobileBrowser && facebookModal) {
-                facebookModal.style.display = 'flex';
-                facebookModal.setAttribute('aria-hidden', 'false');
-            }
-        }, 300);
-    });
-}, { once: true });
-
