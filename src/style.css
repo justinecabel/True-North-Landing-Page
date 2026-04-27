@@ -158,6 +158,12 @@ nav button, #message-us {
     font-weight: bold;
 }
 
+#nav-message-us {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
 nav button:hover, #message-us:hover {
     background: var(--brand-strong);
 }

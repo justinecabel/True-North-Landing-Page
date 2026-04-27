@@ -95,15 +95,23 @@ window.addEventListener('DOMContentLoaded', function () {
 
     const navMsgBtn = document.getElementById('nav-message-us');
     const heroMsgBtn = document.getElementById('message-us');
+    let isHeroMessageVisible = true;
+    let isFooterVisible = false;
+    const syncNavMessageButton = () => {
+        if (!navMsgBtn) return;
+
+        const isHidden = isHeroMessageVisible || isFooterVisible;
+        navMsgBtn.style.display = isFooterVisible ? 'none' : '';
+        navMsgBtn.style.opacity = isHeroMessageVisible ? '0' : '1';
+        navMsgBtn.style.pointerEvents = isHidden ? 'none' : '';
+        navMsgBtn.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
+    };
+
+    syncNavMessageButton();
     if (navMsgBtn && heroMsgBtn) {
         const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                navMsgBtn.style.opacity = '0';
-                navMsgBtn.style.pointerEvents = 'none';
-            } else {
-                navMsgBtn.style.opacity = '1';
-                navMsgBtn.style.pointerEvents = '';
-            }
+            isHeroMessageVisible = entry.isIntersecting;
+            syncNavMessageButton();
         }, { threshold: 0.1 });
         observer.observe(heroMsgBtn);
     }
@@ -423,16 +431,11 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 
     const footer = document.querySelector('.footer');
-    const titleContactButton = document.getElementById('nav-message-us');
-    if (footer && titleContactButton) {
-        const toggleTitleButton = (isFooterVisible) => {
-            titleContactButton.style.display = isFooterVisible ? 'none' : '';
-            titleContactButton.setAttribute('aria-hidden', isFooterVisible ? 'true' : 'false');
-        };
-
+    if (footer && navMsgBtn) {
         const footerObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                toggleTitleButton(entry.isIntersecting);
+                isFooterVisible = entry.isIntersecting;
+                syncNavMessageButton();
             });
         }, { threshold: 0.2 });
 
