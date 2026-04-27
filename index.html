@@ -51,6 +51,7 @@
 <body>
     <div id="cert-modal" style="display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;">
         <span id="cert-modal-close" style="position:absolute;top:2em;right:2em;font-size:2em;color:white;cursor:pointer;text-shadow:0 0 10px black;">&times;</span>
+        <div id="cert-modal-spinner" aria-label="Loading certification"></div>
         <img id="cert-modal-img" src="" alt="Certification" style="max-width:90vw;max-height:80vh;box-shadow:0 0 20px #000;border-radius:1em;">
     </div>
     <nav>
@@ -58,7 +59,7 @@
            <img src="https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/logo.png" alt="logo" width="50" height="50" loading="eager" draggable="false">
         </div>
         <div class="right">
-            <button id="nav-message-us" aria-hidden="true">
+            <button id="nav-message-us" class="is-hidden" aria-hidden="true">
                 Contact Us
             </button>
         </div>

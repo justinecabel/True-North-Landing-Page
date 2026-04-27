@@ -95,15 +95,15 @@ window.addEventListener('DOMContentLoaded', function () {
 
     const navMsgBtn = document.getElementById('nav-message-us');
     const heroMsgBtn = document.getElementById('message-us');
+    const heroImage = document.querySelector('.hero > img');
     let isHeroMessageVisible = true;
     let isFooterVisible = false;
     const syncNavMessageButton = () => {
         if (!navMsgBtn) return;
 
         const isHidden = isHeroMessageVisible || isFooterVisible;
-        navMsgBtn.style.display = isFooterVisible ? 'none' : '';
-        navMsgBtn.style.opacity = isHeroMessageVisible ? '0' : '1';
-        navMsgBtn.style.pointerEvents = isHidden ? 'none' : '';
+        navMsgBtn.hidden = isFooterVisible;
+        navMsgBtn.classList.toggle('is-hidden', isHidden);
         navMsgBtn.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
     };
 
@@ -139,10 +139,22 @@ window.addEventListener('DOMContentLoaded', function () {
                         e.preventDefault();
                         const modal = document.getElementById('cert-modal');
                         const modalImg = document.getElementById('cert-modal-img');
-                        modalImg.src = (item.url && item.url !== '#') ? item.url : item.logo;
-                        modalImg.alt = img.alt;
-                        modalImg.style.display = 'block';
+                        const modalSpinner = document.getElementById('cert-modal-spinner');
+                        const certificateSrc = (item.url && item.url !== '#') ? item.url : item.logo;
+
                         modal.style.display = 'flex';
+                        modalImg.alt = img.alt;
+                        modalImg.style.display = 'none';
+                        if (modalSpinner) modalSpinner.style.display = 'block';
+
+                        modalImg.onload = function () {
+                            if (modalSpinner) modalSpinner.style.display = 'none';
+                            modalImg.style.display = 'block';
+                        };
+                        modalImg.onerror = function () {
+                            if (modalSpinner) modalSpinner.style.display = 'none';
+                        };
+                        modalImg.src = certificateSrc;
                     });
                     fragment.appendChild(img);
                 }
@@ -151,14 +163,22 @@ window.addEventListener('DOMContentLoaded', function () {
             listContainer.appendChild(fragment);
             const modal = document.getElementById('cert-modal');
             const modalClose = document.getElementById('cert-modal-close');
-            modalClose.onclick = function () {
+            const modalImg = document.getElementById('cert-modal-img');
+            const modalSpinner = document.getElementById('cert-modal-spinner');
+            const closeCertModal = function () {
                 modal.style.display = 'none';
-                document.getElementById('cert-modal-img').src = '';
+                if (modalSpinner) modalSpinner.style.display = 'none';
+                modalImg.onload = null;
+                modalImg.onerror = null;
+                modalImg.style.display = 'none';
+                modalImg.src = '';
+            };
+            modalClose.onclick = function () {
+                closeCertModal();
             };
             modal.onclick = function (e) {
                 if (e.target === modal) {
-                    modal.style.display = 'none';
-                    document.getElementById('cert-modal-img').src = '';
+                    closeCertModal();
                 }
             };
         })
@@ -395,7 +415,31 @@ window.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error loading TNMC data:', error));
 
-    window.__jsonReadyPromise = Promise.allSettled([listPromise, vesselPromise, tnmcPromise]);
+    const heroImagePromise = new Promise((resolve) => {
+        if (!heroImage) {
+            resolve();
+            return;
+        }
+
+        if (heroImage.complete) {
+            if (heroImage.naturalWidth > 0) {
+                document.body.classList.add('hero-image-ready');
+            }
+            resolve();
+            return;
+        }
+
+        heroImage.addEventListener('load', () => {
+            document.body.classList.add('hero-image-ready');
+            resolve();
+        }, { once: true });
+
+        heroImage.addEventListener('error', () => {
+            resolve();
+        }, { once: true });
+    });
+
+    window.__jsonReadyPromise = Promise.allSettled([listPromise, vesselPromise, tnmcPromise, heroImagePromise]);
     window.__jsonReadyPromise.finally(() => {
         document.body.classList.add('loaded');
     });

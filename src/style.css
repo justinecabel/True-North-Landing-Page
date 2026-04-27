@@ -159,9 +159,12 @@ nav button, #message-us {
 }
 
 #nav-message-us {
+    transition: opacity 0.2s ease;
+}
+
+#nav-message-us.is-hidden {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s ease;
 }
 
 nav button:hover, #message-us:hover {
@@ -226,9 +229,24 @@ body.loaded .hero button {
     transform: translateY(0);
 }
 
-body.loaded .hero > img {
+body.loaded.hero-image-ready .hero > img {
     opacity: 1;
     transform: translate(0, 30px) scale(1);
+}
+
+#cert-modal-spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 0.35rem solid rgba(255, 255, 255, 0.28);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: cert-spinner-rotate 0.8s linear infinite;
+}
+
+@keyframes cert-spinner-rotate {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .logo-text, #hero-text, .hero button {
@@ -353,12 +371,12 @@ html[data-theme="light"] .tagline {
         align-self: center;
         margin: -0.5em auto 0;
         display: block;
-        opacity: 1;
+        opacity: 0;
         z-index: 1;
         transform: translateY(12px) scale(0.96);
     }
 
-    body.loaded .hero > img {
+    body.loaded.hero-image-ready .hero > img {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
