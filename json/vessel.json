@@ -170,6 +170,17 @@
         
     },
     "tknshipping":{
+        "JBU_OPAL": {
+            "text": "JBU OPAL",
+            "image": "https://static.vesselfinder.net/ship-photo/9400409-538005965-2f5ca7ce95853b906b47eb881dffa9a9/1?v1",
+            "desc":{
+                "imo" : "9400409",
+                "built": "2009",
+                "grt": "11,561",
+                "flag": "KOREA",
+                "type": "OIL/CHEM"
+            }   
+        },
         "New_Ship_2026_2": {
             "text": "TBD Vessel #2",
             "image": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/new_ship_2026.png",
