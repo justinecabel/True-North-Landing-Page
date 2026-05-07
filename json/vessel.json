@@ -171,7 +171,7 @@
     },
     "tknshipping":{
         "JBU_OPAL": {
-            "text": "JBU OPAL",
+            "text": "MT. JBU OPAL",
             "image": "https://static.vesselfinder.net/ship-photo/9400409-538005965-2f5ca7ce95853b906b47eb881dffa9a9/1?v1",
             "desc":{
                 "imo" : "9400409",
@@ -181,14 +181,14 @@
                 "type": "OIL/CHEM"
             }   
         },
-        "New_Ship_2026_2": {
-            "text": "TBD Vessel #2",
-            "image": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/new_ship_2026.png",
+        "DM_BEA": {
+            "text": "MT. DM BEA",
+            "image": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/DM_BEA.png",
             "desc":{
-                "imo" : "TBD",
-                "built": "TBD",
-                "grt": "TBD",
-                "flag": "TBD",
+                "imo" : "9674763",
+                "built": "2013",
+                "grt": "14,750",
+                "flag": "PANAMA",
                 "type": "OIL/CHEM"
             }   
         }
