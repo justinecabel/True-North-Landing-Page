@@ -191,6 +191,17 @@
                 "flag": "PANAMA",
                 "type": "OIL/CHEM"
             }   
+        },
+        "New_Ship_2026_1": {
+            "text": "TBD Vessel #2",
+            "image": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/new_ship_2026.png",
+            "desc":{
+                "imo" : "TBD",
+                "built": "TBD",
+                "grt": "TBD",
+                "flag": "TBD",
+                "type": "OIL/CHEM"
+            }   
         }
     },
     
