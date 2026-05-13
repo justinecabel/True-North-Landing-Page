@@ -192,14 +192,14 @@
                 "type": "OIL/CHEM"
             }   
         },
-        "New_Ship_2026_1": {
-            "text": "TBD Vessel #2",
-            "image": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/new_ship_2026.png",
+        "FG_ROTTERDAM": {
+            "text": "FG ROTTERDAM",
+            "image": "https://static.vesselfinder.net/ship-photo/9485863-373474000-77083067a42d5862b53f1fc172dffa52/1?v1",
             "desc":{
-                "imo" : "TBD",
-                "built": "TBD",
-                "grt": "TBD",
-                "flag": "TBD",
+                "imo" : "9485863",
+                "built": "2012",
+                "grt": "11,640",
+                "flag": "PANAMA",
                 "type": "OIL/CHEM"
             }   
         }
