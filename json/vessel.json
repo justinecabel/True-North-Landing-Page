@@ -66,17 +66,6 @@
                 "type": "OIL/CHEM"
             }   
         },
-        "MT.WOOJIN_FRANK": {
-            "text": "MT. WOOJIN FRANK",
-            "image": "https://static.vesselfinder.net/ship-photo/9317262-441927000-774e17abd52c00b6ea3bdf959f56bc8b/1?v1",
-            "desc":{
-                "imo" : "9317262",
-                "built": "2005",
-                "grt": "7,143",
-                "flag": "KOREA",
-                "type": "OIL/CHEM"
-            }   
-        },
         "MT.CLAYTON": {
             "text": "MT. CLAYTON",
             "image": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/clayton.jpg",
