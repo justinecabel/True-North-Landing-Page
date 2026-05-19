@@ -145,14 +145,14 @@
                 "type": "OIL/CHEM"
             }   
         },
-        "New_Ship_2026_1": {
-            "text": "TBD Vessel #1",
+        "Chem_Stream": {
+            "text": "MT. CHEM STREAM",
             "image": "https://cdn.jsdelivr.net/gh/justinecabel/True-North-Landing-Page@main/src/new_ship_2026.png",
             "desc":{
-                "imo" : "TBD",
-                "built": "TBD",
-                "grt": "TBD",
-                "flag": "TBD",
+                "imo" : "9479979",
+                "built": "2010",
+                "grt": "11,757",
+                "flag": "LIBERIA",
                 "type": "OIL/CHEM"
             }   
         }
