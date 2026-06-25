@@ -145,8 +145,8 @@
                 "type": "OIL/CHEM"
             }   
         },
-        "Chem_Stream": {
-            "text": "MT. CHEM STREAM",
+        "SKY_DREAM": {
+            "text": "MT. SKY DREAM",
             "image": "https://static.vesselfinder.net/ship-photo/9479979-636019173-cbaa72dbad6e911d8ffe89ceca4b201d/1?v1",
             "desc":{
                 "imo" : "9479979",
